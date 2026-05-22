@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PNG Education Partnership Mapping — NDoE Dashboard 2025</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --png-blue:       #1a4d8c;
+  --png-blue-dark:  #0e3563;
+  --png-blue-deep:  #082348;
+  --png-yellow:     #f5c518;
+  --png-yellow-dk:  #d9a800;
+  --png-red:        #ce1126;
+  --bg:             #f5f7fb;
+  --card:           #ffffff;
+  --text:           #1a2436;
+  --muted:          #5b6b81;
+  --border:         #dde3ec;
+  --shadow:         0 1px 3px rgba(10,30,60,.08), 0 4px 12px rgba(10,30,60,.06);
+  --shadow-lg:      0 6px 24px rgba(10,30,60,.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text); background: var(--bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ HEADER ============ */
+.header {
+  background: linear-gradient(135deg, var(--png-blue-deep) 0%, var(--png-blue) 60%, var(--png-blue-dark) 100%);
+  color: white;
+  padding: 28px 40px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(245,197,24,.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1500px; margin: 0 auto; position: relative;
+}
+.title-wrap h1 {
+  font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+  display: flex; align-items: baseline; gap: 12px;
+}
+.title-wrap h1 .accent { color: var(--png-yellow); }
+.title-wrap .subtitle {
+  font-size: 14px; color: rgba(255,255,255,.78); margin-top: 4px;
+  font-weight: 400;
+}
+.badge {
+  background: var(--png-yellow); color: var(--png-blue-deep);
+  font-size: 11px; font-weight: 700;
+  padding: 4px 10px; border-radius: 12px; letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.title-wrap h1 small {
+  font-size: 12px; opacity: 0.7; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* ============ LAYOUT ============ */
+.container {
+  max-width: 1500px; margin: 0 auto;
+  padding: 24px 40px 64px;
+}
+
+/* ============ KPI CARDS ============ */
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-bottom: 24px;
+}
+.kpi {
+  background: var(--card); border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--png-blue);
+  position: relative;
+}
+.kpi.bilateral { border-top-color: #1a4d8c; }
+.kpi.multilateral { border-top-color: #3b78c4; }
+.kpi.implementing { border-top-color: var(--png-yellow); }
+.kpi.total { border-top-color: var(--png-blue-deep); }
+.kpi .label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600;
+}
+.kpi .value {
+  font-size: 36px; font-weight: 800; color: var(--png-blue-deep);
+  line-height: 1.1; margin-top: 6px;
+}
+.kpi .sub {
+  font-size: 12px; color: var(--muted); margin-top: 4px;
+}
+
+/* ============ TABS / VIEWS ============ */
+.tabs {
+  display: flex; gap: 4px; margin-bottom: 20px;
+  background: var(--card); padding: 4px;
+  border-radius: 10px; box-shadow: var(--shadow);
+  width: fit-content;
+}
+.tab {
+  border: none; background: transparent; cursor: pointer;
+  padding: 9px 18px; border-radius: 6px;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.tab:hover { color: var(--text); background: var(--bg); }
+.tab.active {
+  background: var(--png-blue); color: white;
+}
+
+/* ============ FILTERS ============ */
+.filter-bar {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  background: var(--card); padding: 14px 18px;
+  border-radius: 12px; box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+.search-input {
+  flex: 1; min-width: 220px;
+  padding: 9px 12px 9px 36px; border: 1px solid var(--border);
+  border-radius: 8px; font-size: 13px; font-family: inherit;
+  background: white url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b6b81' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>") 12px center / 16px no-repeat;
+}
+.search-input:focus {
+  outline: none; border-color: var(--png-blue);
+  box-shadow: 0 0 0 3px rgba(26,77,140,.12);
+}
+.filter-select {
+  padding: 9px 12px; border: 1px solid var(--border);
+  border-radius: 8px; font-size: 13px; background: white;
+  font-family: inherit; cursor: pointer;
+  color: var(--text);
+}
+.filter-select:focus { outline: none; border-color: var(--png-blue); }
+.reset-btn {
+  padding: 9px 14px; border: 1px solid var(--border);
+  background: white; color: var(--muted);
+  border-radius: 8px; font-size: 13px; cursor: pointer;
+  font-family: inherit; font-weight: 600;
+}
+.reset-btn:hover { background: var(--bg); }
+.results-count {
+  margin-left: auto; font-size: 13px; color: var(--muted);
+  font-weight: 600;
+}
+
+/* ============ VIEW: GRID / CARDS ============ */
+.view { display: none; }
+.view.active { display: block; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card); border-radius: 12px;
+  box-shadow: var(--shadow); overflow: hidden;
+  display: flex; flex-direction: column;
+  border: 1px solid transparent;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--png-blue);
+}
+.card-head {
+  background: linear-gradient(135deg, var(--png-blue) 0%, var(--png-blue-dark) 100%);
+  color: white; padding: 14px 18px 14px;
+  position: relative;
+}
+.card-head .name {
+  font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--png-yellow);
+}
+.card-head .meta {
+  font-size: 11px; color: rgba(255,255,255,.82);
+  margin-top: 3px;
+}
+.card-cat {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 3px 8px; border-radius: 4px;
+}
+.card-cat.bilateral    { background: rgba(255,255,255,.15); color: white; }
+.card-cat.multilateral { background: rgba(255,255,255,.18); color: white; }
+.card-cat.implementing { background: var(--png-yellow); color: var(--png-blue-deep); }
+
+.card-body {
+  padding: 14px 18px 16px;
+  flex: 1;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.card-funding {
+  font-size: 12px; color: var(--png-blue-dark);
+  font-weight: 600; padding: 6px 10px;
+  background: rgba(26,77,140,.06); border-radius: 6px;
+  align-self: flex-start;
+}
+.card-about {
+  font-size: 12.5px; color: var(--text);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-tags {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-top: auto;
+}
+.tag {
+  font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 10px;
+  background: var(--bg); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.tag.focus { background: rgba(245,197,24,.12); color: #8a6500; border-color: rgba(245,197,24,.3); }
+.card-foot {
+  padding: 10px 18px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--muted);
+}
+.programs-count { font-weight: 600; color: var(--png-blue); }
+
+/* ============ VIEW: MAP / GEOGRAPHY ============ */
+.geo-wrap {
+  background: var(--card); border-radius: 12px;
+  padding: 20px 24px; box-shadow: var(--shadow);
+}
+.geo-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.province {
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; background: white;
+  transition: all 0.15s;
+}
+.province:hover {
+  border-color: var(--png-blue);
+  background: rgba(26,77,140,.02);
+}
+.province-name {
+  font-size: 13px; font-weight: 700; color: var(--png-blue-deep);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.province-count {
+  background: var(--png-blue); color: white;
+  font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 10px;
+  min-width: 24px; text-align: center;
+}
+.province-count.high { background: var(--png-yellow); color: var(--png-blue-deep); }
+.province-count.med { background: var(--png-blue); }
+.province-count.low { background: var(--muted); }
+.province-partners {
+  font-size: 11px; color: var(--muted);
+  margin-top: 8px; line-height: 1.5;
+}
+.province-partners span {
+  display: inline-block; margin-right: 6px; cursor: pointer;
+  color: var(--png-blue-dark); font-weight: 500;
+}
+.province-partners span:hover { text-decoration: underline; }
+
+/* Geo heatmap style */
+.heatmap-bar {
+  height: 6px; background: var(--bg); border-radius: 3px;
+  margin-top: 10px; overflow: hidden;
+}
+.heatmap-fill {
+  height: 100%; background: linear-gradient(90deg, var(--png-blue), var(--png-yellow));
+  border-radius: 3px;
+}
+
+/* ============ VIEW: CHARTS ============ */
+.charts-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.chart-card {
+  background: var(--card); border-radius: 12px;
+  padding: 20px 22px; box-shadow: var(--shadow);
+}
+.chart-card.wide { grid-column: 1 / -1; }
+.chart-title {
+  font-size: 14px; font-weight: 700; color: var(--png-blue-deep);
+  margin-bottom: 14px; display: flex; justify-content: space-between;
+}
+.chart-title small { color: var(--muted); font-weight: 500; font-size: 12px; }
+.chart-canvas-wrap {
+  position: relative; height: 280px;
+}
+.chart-canvas-wrap.tall { height: 380px; }
+
+/* ============ VIEW: TABLE ============ */
+.table-wrap {
+  background: var(--card); border-radius: 12px;
+  box-shadow: var(--shadow); overflow: auto;
+}
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: 12.5px;
+}
+thead th {
+  background: var(--png-blue-deep); color: white;
+  padding: 12px 14px; text-align: left; font-weight: 700;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  position: sticky; top: 0;
+}
+tbody td {
+  padding: 11px 14px; border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tbody tr:hover { background: rgba(26,77,140,.03); cursor: pointer; }
+tbody tr:last-child td { border-bottom: none; }
+td.partner-cell { font-weight: 700; color: var(--png-blue-deep); }
+.cat-pill {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 7px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  display: inline-block;
+}
+.cat-pill.bilateral    { background: rgba(26,77,140,.12); color: var(--png-blue-dark); }
+.cat-pill.multilateral { background: rgba(59,120,196,.18); color: #1c4f8f; }
+.cat-pill.implementing { background: rgba(245,197,24,.2); color: #8a6500; }
+
+/* ============ MODAL ============ */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(10,30,60,.55);
+  display: none; align-items: flex-start; justify-content: center;
+  padding: 40px 20px; overflow-y: auto;
+  z-index: 1000; backdrop-filter: blur(4px);
+}
+.modal-backdrop.show { display: flex; }
+.modal {
+  background: var(--card); border-radius: 14px;
+  max-width: 880px; width: 100%;
+  box-shadow: 0 24px 60px rgba(0,0,0,.3);
+  animation: slide-up 0.2s ease;
+  overflow: hidden;
+}
+@keyframes slide-up { from { transform: translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+.modal-head {
+  background: linear-gradient(135deg, var(--png-blue-deep) 0%, var(--png-blue) 100%);
+  color: white; padding: 24px 32px;
+  position: relative;
+}
+.modal-head h2 {
+  font-size: 22px; font-weight: 800;
+  color: var(--png-yellow); letter-spacing: -0.01em;
+}
+.modal-head .meta {
+  font-size: 13px; opacity: 0.88; margin-top: 4px;
+}
+.modal-close {
+  position: absolute; top: 20px; right: 24px;
+  background: rgba(255,255,255,.15); border: none; color: white;
+  width: 32px; height: 32px; border-radius: 50%;
+  font-size: 20px; cursor: pointer; line-height: 1;
+}
+.modal-close:hover { background: rgba(255,255,255,.25); }
+.modal-body {
+  padding: 28px 32px 32px;
+  max-height: calc(100vh - 200px); overflow-y: auto;
+}
+.modal-body h3 {
+  font-size: 12px; font-weight: 700;
+  color: var(--png-blue); text-transform: uppercase; letter-spacing: 0.08em;
+  margin: 24px 0 10px;
+}
+.modal-body h3:first-child { margin-top: 0; }
+.modal-body p, .modal-body li { font-size: 13.5px; line-height: 1.6; }
+.modal-body ul { padding-left: 18px; }
+.modal-body ul li { margin-bottom: 5px; }
+.modal-section { margin-bottom: 4px; }
+.about-block {
+  background: var(--bg); padding: 14px 16px; border-radius: 8px;
+  font-size: 13px; line-height: 1.6; color: var(--text);
+}
+.program-card {
+  border-left: 3px solid var(--png-yellow); background: var(--bg);
+  padding: 12px 16px; margin-bottom: 10px; border-radius: 0 8px 8px 0;
+}
+.program-card .name {
+  font-size: 13px; font-weight: 700; color: var(--png-blue-deep);
+}
+.program-card .funding {
+  font-size: 11px; color: var(--png-blue); font-weight: 600; margin-top: 2px;
+}
+.program-card .desc {
+  font-size: 12.5px; color: var(--text); margin-top: 6px; line-height: 1.5;
+}
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 11px; padding: 5px 10px; border-radius: 14px;
+  background: var(--bg); color: var(--muted); border: 1px solid var(--border);
+  font-weight: 600;
+}
+.chip.province { background: rgba(26,77,140,.08); color: var(--png-blue-dark); border-color: rgba(26,77,140,.2); }
+.chip.focus    { background: rgba(245,197,24,.12); color: #8a6500; border-color: rgba(245,197,24,.3); }
+
+.footer {
+  margin-top: 40px; padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--muted); text-align: center;
+}
+
+@media (max-width: 768px) {
+  .header { padding: 20px 20px; }
+  .container { padding: 16px 20px 40px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+  .title-wrap h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="title-wrap">
+      <h1>
+        <span class="badge">NDoE 2025</span>
+        EDUCATION <span class="accent">PARTNERSHIP</span> MAPPING
+      </h1>
+      <div class="subtitle">National Department of Education · Papua New Guinea · Interactive Dashboard</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:11px; opacity:.7; text-transform:uppercase; letter-spacing:.08em;">Source of Truth</div>
+      <div style="font-size:13px; font-weight:600; margin-top:2px;">Endorsed Final Report</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- KPI Row -->
+  <section class="kpi-grid">
+    <div class="kpi total">
+      <div class="label">Total Partners</div>
+      <div class="value" id="kpi-total">24</div>
+      <div class="sub">Mapped & validated</div>
+    </div>
+    <div class="kpi bilateral">
+      <div class="label">Bilateral</div>
+      <div class="value" id="kpi-bilateral">7</div>
+      <div class="sub">Foreign Governments</div>
+    </div>
+    <div class="kpi multilateral">
+      <div class="label">Multilateral</div>
+      <div class="value" id="kpi-multilateral">5</div>
+      <div class="sub">MDBs & UN Agencies</div>
+    </div>
+    <div class="kpi implementing">
+      <div class="label">Implementing</div>
+      <div class="value" id="kpi-implementing">12</div>
+      <div class="sub">NGOs & CSOs</div>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-view="grid">Partner Cards</button>
+    <button class="tab" data-view="table">Table</button>
+    <button class="tab" data-view="geo">Provincial Coverage</button>
+    <button class="tab" data-view="charts">Analytics</button>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar" id="filter-bar">
+    <input type="search" id="search" class="search-input" placeholder="Search partner name, program, or focus area…" />
+    <select id="filter-cat" class="filter-select">
+      <option value="">All categories</option>
+      <option value="Bilateral">Bilateral</option>
+      <option value="Multilateral">Multilateral</option>
+      <option value="Implementing">Implementing</option>
+    </select>
+    <select id="filter-focus" class="filter-select">
+      <option value="">All focus areas</option>
+    </select>
+    <select id="filter-province" class="filter-select">
+      <option value="">All provinces</option>
+    </select>
+    <button id="reset" class="reset-btn">Reset</button>
+    <span class="results-count" id="results-count"></span>
+  </div>
+
+  <!-- VIEW: Cards Grid -->
+  <section class="view active" id="view-grid">
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- VIEW: Table -->
+  <section class="view" id="view-table">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Partner</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Role</th>
+            <th>Partner Since</th>
+            <th>Flagship Funding</th>
+            <th>Programs</th>
+            <th>Focus Areas</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- VIEW: Provincial Coverage -->
+  <section class="view" id="view-geo">
+    <div class="geo-wrap">
+      <div class="chart-title">
+        Partner presence across PNG's 22 provinces + NCD
+        <small>Click a partner name to view their full profile</small>
+      </div>
+      <div class="geo-grid" id="geo-grid"></div>
+    </div>
+  </section>
+
+  <!-- VIEW: Analytics -->
+  <section class="view" id="view-charts">
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Partners by Category <small>n = 24</small></div>
+        <div class="chart-canvas-wrap"><canvas id="chart-category"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Partners by Organisation Type</div>
+        <div class="chart-canvas-wrap"><canvas id="chart-orgtype"></canvas></div>
+      </div>
+      <div class="chart-card wide">
+        <div class="chart-title">Focus Area Coverage <small>Number of partners working in each focus area</small></div>
+        <div class="chart-canvas-wrap tall"><canvas id="chart-focus"></canvas></div>
+      </div>
+      <div class="chart-card wide">
+        <div class="chart-title">Provincial Coverage <small>Partners with explicit presence in each province</small></div>
+        <div class="chart-canvas-wrap tall"><canvas id="chart-province"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Compiled from the NDoE 2025 Partnership Mapping Survey · Endorsed Final Report ·
+    Project Management &amp; Aid Coordination Division, National Department of Education
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h2 id="modal-title"></h2>
+      <div class="meta" id="modal-meta"></div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script src="partners.js"></script>
+<script>
+/* ============ STATE ============ */
+let state = {
+  view: "grid",
+  search: "",
+  category: "",
+  focus: "",
+  province: "",
+};
+
+/* ============ HELPERS ============ */
+const $ = id => document.getElementById(id);
+const elem = (tag, cls, html) => {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+};
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+function partnerWorksIn(p, province) {
+  if (!province) return true;
+  if (p.provinces.includes("all")) return true;
+  return p.provinces.includes(province);
+}
+function effectiveProvinces(p) {
+  return p.provinces.includes("all") ? PROVINCES : p.provinces;
+}
+
+function filterPartners() {
+  const q = state.search.toLowerCase().trim();
+  return PARTNERS.filter(p => {
+    if (state.category && p.category !== state.category) return false;
+    if (state.focus && !p.focusAreas.includes(state.focus)) return false;
+    if (state.province && !partnerWorksIn(p, state.province)) return false;
+    if (q) {
+      const haystack = [
+        p.name, p.about, p.orgType, p.role,
+        ...p.focusAreas,
+        ...p.programs.map(pr => pr.name + " " + pr.desc),
+        ...(p.strategic || [])
+      ].join(" ").toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+/* ============ POPULATE FILTERS ============ */
+function populateFilters() {
+  const focusSel = $("filter-focus");
+  FOCUS_AREAS.forEach(fa => {
+    const o = document.createElement("option");
+    o.value = fa; o.textContent = fa;
+    focusSel.appendChild(o);
+  });
+  const provSel = $("filter-province");
+  PROVINCES.forEach(pv => {
+    const o = document.createElement("option");
+    o.value = pv; o.textContent = pv;
+    provSel.appendChild(o);
+  });
+}
+
+/* ============ RENDER: CARDS ============ */
+function renderCards(partners) {
+  const wrap = $("cards");
+  wrap.innerHTML = "";
+  if (partners.length === 0) {
+    wrap.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--muted);">
+      <div style="font-size:40px; margin-bottom:8px;">∅</div>
+      No partners match the current filters.
+    </div>`;
+    return;
+  }
+  partners.forEach(p => {
+    const provincesDisplay = p.provinces.includes("all") ? "Nationwide" :
+      (p.provinces.length > 3 ? `${p.provinces.length} provinces` : p.provinces.join(" · "));
+    const focusTags = p.focusAreas.slice(0, 4).map(f => `<span class="tag focus">${f}</span>`).join("");
+    const moreFocus = p.focusAreas.length > 4 ? `<span class="tag">+${p.focusAreas.length - 4}</span>` : "";
+
+    const card = elem("div", "card");
+    card.innerHTML = `
+      <div class="card-head">
+        <span class="card-cat ${p.category.toLowerCase()}">${p.category}</span>
+        <div class="name">${p.name}</div>
+        <div class="meta">${p.orgType} · ${p.role}</div>
+      </div>
+      <div class="card-body">
+        ${p.flagshipFunding ? `<div class="card-funding">▸ ${p.flagshipFunding}</div>` : ""}
+        <div class="card-about">${p.about}</div>
+        <div class="card-tags">${focusTags}${moreFocus}</div>
+      </div>
+      <div class="card-foot">
+        <span class="programs-count">${p.programs.length} programs</span>
+        <span>${provincesDisplay}${p.partnerSince ? " · since " + p.partnerSince : ""}</span>
+      </div>
+    `;
+    card.addEventListener("click", () => openModal(p));
+    wrap.appendChild(card);
+  });
+}
+
+/* ============ RENDER: TABLE ============ */
+function renderTable(partners) {
+  const tbody = $("table-body");
+  tbody.innerHTML = "";
+  partners.forEach(p => {
+    const provincesDisplay = p.provinces.includes("all") ? "Nationwide" : p.provinces.length + " provinces";
+    const focusDisplay = p.focusAreas.slice(0, 3).join(", ") + (p.focusAreas.length > 3 ? "…" : "");
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="partner-cell">${p.name}</td>
+      <td><span class="cat-pill ${p.category.toLowerCase()}">${p.category}</span></td>
+      <td>${p.orgType}</td>
+      <td>${p.role}</td>
+      <td>${p.partnerSince || "—"}</td>
+      <td>${p.flagshipFunding || "—"}</td>
+      <td>${p.programs.length} (${provincesDisplay})</td>
+      <td>${focusDisplay}</td>
+    `;
+    tr.addEventListener("click", () => openModal(p));
+    tbody.appendChild(tr);
+  });
+}
+
+/* ============ RENDER: GEO ============ */
+function renderGeo(partners) {
+  const grid = $("geo-grid");
+  grid.innerHTML = "";
+  const provData = PROVINCES.map(pv => {
+    const list = partners.filter(p => p.provinces.includes(pv) || p.provinces.includes("all"));
+    return { name: pv, partners: list };
+  });
+  const max = Math.max(...provData.map(p => p.partners.length));
+  provData.sort((a, b) => b.partners.length - a.partners.length);
+  provData.forEach(({ name, partners: list }) => {
+    const tier = list.length >= max * 0.66 ? "high" : list.length >= max * 0.33 ? "med" : "low";
+    const div = elem("div", "province");
+    const partnerLinks = list.map(p =>
+      `<span data-id="${p.id}">${p.name.replace(/\s*\([^)]*\)/, "")}</span>`
+    ).join(", ");
+    div.innerHTML = `
+      <div class="province-name">
+        ${name}
+        <span class="province-count ${tier}">${list.length}</span>
+      </div>
+      <div class="heatmap-bar"><div class="heatmap-fill" style="width:${(list.length / max * 100).toFixed(0)}%;"></div></div>
+      <div class="province-partners">${partnerLinks || "<em style='opacity:.6;'>No direct partner listed</em>"}</div>
+    `;
+    div.querySelectorAll(".province-partners span").forEach(sp => {
+      sp.addEventListener("click", () => {
+        const id = sp.dataset.id;
+        const p = PARTNERS.find(x => x.id === id);
+        if (p) openModal(p);
+      });
+    });
+    grid.appendChild(div);
+  });
+}
+
+/* ============ RENDER: CHARTS ============ */
+let charts = {};
+
+function destroyChart(id) {
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+
+function renderCharts(partners) {
+  Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.color = "#5b6b81";
+
+  // 1) Partners by Category
+  destroyChart("category");
+  const catCounts = {};
+  partners.forEach(p => catCounts[p.category] = (catCounts[p.category] || 0) + 1);
+  charts.category = new Chart($("chart-category"), {
+    type: "doughnut",
+    data: {
+      labels: Object.keys(catCounts),
+      datasets: [{
+        data: Object.values(catCounts),
+        backgroundColor: ["#1a4d8c", "#3b78c4", "#f5c518"],
+        borderColor: "white",
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "bottom", labels: { padding: 12, boxWidth: 12 } }
+      },
+      cutout: "60%"
+    }
+  });
+
+  // 2) Partners by Org Type
+  destroyChart("orgtype");
+  const otCounts = {};
+  partners.forEach(p => otCounts[p.orgType] = (otCounts[p.orgType] || 0) + 1);
+  const otSorted = Object.entries(otCounts).sort((a, b) => b[1] - a[1]);
+  charts.orgtype = new Chart($("chart-orgtype"), {
+    type: "bar",
+    data: {
+      labels: otSorted.map(([k]) => k),
+      datasets: [{
+        data: otSorted.map(([, v]) => v),
+        backgroundColor: "#1a4d8c",
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: "#eef0f4" } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // 3) Focus area coverage
+  destroyChart("focus");
+  const faCounts = {};
+  FOCUS_AREAS.forEach(fa => faCounts[fa] = 0);
+  partners.forEach(p => p.focusAreas.forEach(fa => { if (faCounts[fa] !== undefined) faCounts[fa]++; }));
+  const faSorted = Object.entries(faCounts).sort((a, b) => b[1] - a[1]);
+  charts.focus = new Chart($("chart-focus"), {
+    type: "bar",
+    data: {
+      labels: faSorted.map(([k]) => k),
+      datasets: [{
+        data: faSorted.map(([, v]) => v),
+        backgroundColor: faSorted.map(([, v]) => v >= 10 ? "#1a4d8c" : v >= 5 ? "#3b78c4" : "#7fb3e0"),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.parsed.x} partners` } }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { stepSize: 2 }, grid: { color: "#eef0f4" } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // 4) Province coverage
+  destroyChart("province");
+  const pvCounts = {};
+  PROVINCES.forEach(pv => pvCounts[pv] = 0);
+  partners.forEach(p => {
+    effectiveProvinces(p).forEach(pv => { if (pvCounts[pv] !== undefined) pvCounts[pv]++; });
+  });
+  const pvSorted = Object.entries(pvCounts).sort((a, b) => b[1] - a[1]);
+  charts.province = new Chart($("chart-province"), {
+    type: "bar",
+    data: {
+      labels: pvSorted.map(([k]) => k),
+      datasets: [{
+        data: pvSorted.map(([, v]) => v),
+        backgroundColor: pvSorted.map(([, v]) => v >= 15 ? "#f5c518" : v >= 10 ? "#1a4d8c" : v >= 5 ? "#3b78c4" : "#94a3b8"),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.parsed.x} partners` } }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { stepSize: 2 }, grid: { color: "#eef0f4" } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+}
+
+/* ============ MODAL ============ */
+function openModal(p) {
+  $("modal-title").textContent = p.name;
+  $("modal-meta").textContent = `${p.category} Partner · ${p.orgType} · ${p.role}${p.partnerSince ? " · Partner since " + p.partnerSince : ""}`;
+  const body = $("modal-body");
+  body.innerHTML = "";
+
+  body.appendChild(elem("h3", null, "About"));
+  body.appendChild(elem("div", "about-block", p.about));
+
+  if (p.flagshipFunding) {
+    body.appendChild(elem("h3", null, "Flagship Investment"));
+    body.appendChild(elem("div", "about-block", `<strong style="color:var(--png-blue-dark);">${p.flagshipFunding}</strong>`));
+  }
+
+  body.appendChild(elem("h3", null, "Coordination Mechanisms"));
+  const ul1 = elem("ul");
+  p.coordination.forEach(c => ul1.appendChild(elem("li", null, c)));
+  body.appendChild(ul1);
+
+  body.appendChild(elem("h3", null, `Major Programs & Projects (${p.programs.length})`));
+  const programsWrap = elem("div");
+  p.programs.forEach(prog => {
+    const card = elem("div", "program-card");
+    card.innerHTML = `
+      <div class="name">${prog.name}</div>
+      ${prog.funding ? `<div class="funding">${prog.funding}</div>` : ""}
+      <div class="desc">${prog.desc}</div>
+    `;
+    programsWrap.appendChild(card);
+  });
+  body.appendChild(programsWrap);
+
+  body.appendChild(elem("h3", null, "Provincial Coverage"));
+  const provs = p.provinces.includes("all") ? ["All 22 provinces + NCD"] : p.provinces;
+  const provWrap = elem("div", "chip-row");
+  provs.forEach(pv => provWrap.appendChild(elem("span", "chip province", pv)));
+  body.appendChild(provWrap);
+
+  body.appendChild(elem("h3", null, "Focus Areas"));
+  const faWrap = elem("div", "chip-row");
+  p.focusAreas.forEach(fa => faWrap.appendChild(elem("span", "chip focus", fa)));
+  body.appendChild(faWrap);
+
+  if (p.strategic && p.strategic.length) {
+    body.appendChild(elem("h3", null, "Strategic Value"));
+    const ul2 = elem("ul");
+    p.strategic.forEach(s => ul2.appendChild(elem("li", null, s)));
+    body.appendChild(ul2);
+  }
+
+  $("modal-backdrop").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeModal() {
+  $("modal-backdrop").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+/* ============ ROUTER ============ */
+function render() {
+  const filtered = filterPartners();
+  $("results-count").textContent = `${filtered.length} of ${PARTNERS.length} partners`;
+
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.view === state.view));
+  $("view-" + state.view).classList.add("active");
+
+  if (state.view === "grid") renderCards(filtered);
+  if (state.view === "table") renderTable(filtered);
+  if (state.view === "geo") renderGeo(filtered);
+  if (state.view === "charts") renderCharts(filtered);
+}
+
+/* ============ EVENT BINDING ============ */
+function init() {
+  populateFilters();
+
+  // KPIs
+  $("kpi-total").textContent = PARTNERS.length;
+  $("kpi-bilateral").textContent = PARTNERS.filter(p => p.category === "Bilateral").length;
+  $("kpi-multilateral").textContent = PARTNERS.filter(p => p.category === "Multilateral").length;
+  $("kpi-implementing").textContent = PARTNERS.filter(p => p.category === "Implementing").length;
+
+  // Tabs
+  document.querySelectorAll(".tab").forEach(t => {
+    t.addEventListener("click", () => {
+      state.view = t.dataset.view;
+      render();
+    });
+  });
+
+  // Filters
+  $("search").addEventListener("input", e => { state.search = e.target.value; render(); });
+  $("filter-cat").addEventListener("change", e => { state.category = e.target.value; render(); });
+  $("filter-focus").addEventListener("change", e => { state.focus = e.target.value; render(); });
+  $("filter-province").addEventListener("change", e => { state.province = e.target.value; render(); });
+  $("reset").addEventListener("click", () => {
+    state = { ...state, search: "", category: "", focus: "", province: "" };
+    $("search").value = ""; $("filter-cat").value = "";
+    $("filter-focus").value = ""; $("filter-province").value = "";
+    render();
+  });
+
+  // Modal
+  $("modal-close").addEventListener("click", closeModal);
+  $("modal-backdrop").addEventListener("click", e => {
+    if (e.target === $("modal-backdrop")) closeModal();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  render();
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
