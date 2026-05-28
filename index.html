@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Education Partnership Mapping 2025 — Papua New Guinea</title>
 <meta name="description" content="An endorsed visual overview of education stakeholders, partnerships, and key investments shaping Papua New Guinea's education sector.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-7jAFbbsjrVWZqflBPBv7b.js"></script>
 <script>
@@ -14,393 +14,487 @@
 </script>
 <style>
 :root {
-  --ink:        #0e1726;
-  --ink-soft:   #2a3447;
-  --muted:      #5b6677;
-  --mute-soft:  #8590a3;
-  --line:       #e6e9ef;
-  --bg:         #ffffff;
-  --bg-soft:    #f7f8fb;
-  --accent:     #18416b;
-  --accent-2:   #2b6cb0;
-  --gold:       #c89a2b;
-  --max:        1180px;
+  /* Report palette — sampled from the PDF */
+  --png-blue:        #1a4d8c;
+  --png-blue-dark:   #0e3563;
+  --png-blue-deep:   #082348;
+  --png-blue-soft:   #2b6cb0;
+  --png-yellow:      #f5c518;
+  --png-yellow-dk:   #d9a800;
+  --paper:           #fbfaf6;
+  --ink:             #16213a;
+  --ink-soft:        #3a4863;
+  --muted:           #5e6b85;
+  --line:            #e3e6ee;
+  --max:             1180px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: var(--ink); background: var(--bg);
+  color: var(--ink);
+  background: var(--paper);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  font-feature-settings: "ss01", "cv11";
 }
-
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
-/* ===== NAV ===== */
+/* ===== BILUM / DIAMOND PATTERN ===== */
+/* The repeating diamond mesh used as decorative strips between sections — mirrors the PDF margins. */
+.bilum {
+  height: 38px;
+  background-color: var(--png-blue);
+  background-image:
+    repeating-linear-gradient( 45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 12px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 12px),
+    repeating-linear-gradient( 45deg, rgba(8,35,72,.4) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(-45deg, rgba(8,35,72,.4) 0 1px, transparent 1px 12px);
+  background-size: 16px 16px;
+}
+.bilum.light {
+  background-color: #eef1f6;
+  background-image:
+    repeating-linear-gradient( 45deg, rgba(26,77,140,.18) 0 2px, transparent 2px 12px),
+    repeating-linear-gradient(-45deg, rgba(26,77,140,.18) 0 2px, transparent 2px 12px);
+  background-size: 14px 14px;
+  height: 28px;
+}
+
+/* ===== NAV (sticky, minimal) ===== */
 nav.top {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: saturate(180%) blur(10px);
-  -webkit-backdrop-filter: saturate(180%) blur(10px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(8,35,72,.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--png-yellow);
 }
 .nav-inner {
   max-width: var(--max); margin: 0 auto;
   padding: 14px 32px;
   display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
 }
 .nav-brand {
+  color: white;
+  font-weight: 700; font-size: 13px;
   display: flex; align-items: center; gap: 12px;
-  font-weight: 700; font-size: 14px; letter-spacing: -0.005em;
-}
-.nav-brand .crest {
-  width: 26px; height: 26px; border-radius: 4px;
-  background: var(--accent);
-  display: grid; place-items: center;
-  color: white; font-size: 12px; font-weight: 800;
   letter-spacing: 0.02em;
 }
+.nav-brand .crest {
+  width: 32px; height: 32px; border-radius: 4px;
+  background: var(--png-yellow); color: var(--png-blue-deep);
+  display: grid; place-items: center;
+  font-size: 13px; font-weight: 900;
+  letter-spacing: 0;
+}
 .nav-brand .org {
-  color: var(--muted); font-weight: 500;
-  border-left: 1px solid var(--line); padding-left: 12px;
-  font-size: 12px;
+  font-weight: 500; opacity: 0.72;
+  border-left: 1px solid rgba(255,255,255,.2);
+  padding-left: 12px; font-size: 11.5px;
+  text-transform: uppercase; letter-spacing: 0.07em;
 }
 .nav-links {
-  display: flex; gap: 28px;
-  font-size: 13px; font-weight: 500; color: var(--muted);
+  display: flex; gap: 24px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,.78);
+  text-transform: uppercase; letter-spacing: 0.05em;
 }
-.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover { color: var(--png-yellow); }
 .nav-cta {
-  background: var(--ink); color: white;
-  padding: 8px 14px; border-radius: 6px;
-  font-size: 12.5px; font-weight: 600;
-  transition: background 0.15s;
+  background: var(--png-yellow); color: var(--png-blue-deep);
+  padding: 9px 16px; border-radius: 4px;
+  font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  transition: all 0.15s;
 }
-.nav-cta:hover { background: var(--accent); }
+.nav-cta:hover { background: white; }
 
-/* ===== HERO ===== */
+/* ===== HERO (cover-style) ===== */
 .hero {
-  padding: 80px 32px 56px;
+  background:
+    linear-gradient(135deg, var(--png-blue-deep) 0%, var(--png-blue) 60%, var(--png-blue-dark) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 70% 30%, rgba(245,197,24,.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(255,255,255,.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero::after {
+  /* faint bilum overlay */
+  content: ""; position: absolute; inset: 0; opacity: .08;
+  background-image:
+    repeating-linear-gradient( 45deg, white 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(-45deg, white 0 1px, transparent 1px 22px);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
   max-width: var(--max); margin: 0 auto;
+  padding: 96px 32px 64px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: end;
 }
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 12px; font-weight: 600; color: var(--accent);
-  text-transform: uppercase; letter-spacing: 0.08em;
-  margin-bottom: 22px;
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 800; color: var(--png-yellow);
+  text-transform: uppercase; letter-spacing: 0.14em;
+  margin-bottom: 28px;
 }
-.eyebrow::before {
-  content: ""; width: 24px; height: 1px; background: var(--accent);
+.hero-eyebrow::before {
+  content: ""; width: 28px; height: 2px; background: var(--png-yellow);
 }
 .hero h1 {
-  font-size: clamp(40px, 5.5vw, 68px);
-  font-weight: 700; letter-spacing: -0.025em;
-  line-height: 1.04;
-  max-width: 920px;
-  color: var(--ink);
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 6.5vw, 86px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: white;
+  text-transform: uppercase;
 }
-.hero h1 .accent {
-  color: var(--accent);
+.hero h1 .accent { color: var(--png-yellow); display: block; }
+.hero h1 .year {
+  display: block; font-size: 0.65em;
+  font-weight: 700; opacity: 0.7;
+  letter-spacing: -0.01em;
+  margin-top: 8px;
 }
 .hero .lede {
-  font-size: clamp(17px, 1.6vw, 19px);
-  color: var(--muted);
-  max-width: 660px;
-  margin-top: 28px;
+  margin-top: 32px;
+  font-size: clamp(15px, 1.4vw, 17.5px);
   line-height: 1.6;
+  color: rgba(255,255,255,.82);
+  max-width: 520px;
 }
 .hero-actions {
   margin-top: 36px;
   display: flex; gap: 12px; flex-wrap: wrap;
 }
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 22px;
-  border-radius: 8px;
-  font-size: 14px; font-weight: 600;
-  transition: all 0.15s;
-  border: 1px solid transparent;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px;
+  font-size: 12.5px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  border-radius: 3px;
+  border: none;
   cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
 }
-.btn-primary {
-  background: var(--ink); color: white;
+.btn-yellow {
+  background: var(--png-yellow); color: var(--png-blue-deep);
 }
-.btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-.btn-secondary {
-  background: white; color: var(--ink);
-  border-color: var(--line);
+.btn-yellow:hover { background: white; transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: white;
+  border: 2px solid rgba(255,255,255,.4);
+  padding: 12px 22px;
 }
-.btn-secondary:hover { border-color: var(--ink); }
-.btn .arrow { transition: transform 0.15s; }
+.btn-ghost:hover { border-color: var(--png-yellow); color: var(--png-yellow); }
+.btn .arrow { transition: transform 0.15s; font-size: 16px; }
 .btn:hover .arrow { transform: translateX(3px); }
 
-/* ===== STATS STRIP ===== */
-.stats {
-  max-width: var(--max);
-  margin: 24px auto 0;
-  padding: 32px 32px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+/* Hero stat strip on the right */
+.hero-stats {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  border-left: 1px solid rgba(255,255,255,.18);
+  padding-left: 32px;
 }
-.stat {
-  display: flex; flex-direction: column;
+.hero-stat .num {
+  font-size: 44px; font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1;
+  color: var(--png-yellow);
+  font-feature-settings: "tnum";
 }
-.stat .num {
-  font-size: 38px; font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  line-height: 1;
+.hero-stat .num small {
+  font-size: 18px; color: rgba(255,255,255,.5);
+  font-weight: 600; margin-left: 2px;
 }
-.stat .num small {
-  font-size: 18px; color: var(--mute-soft);
-  font-weight: 500; margin-left: 4px;
-}
-.stat .label {
-  font-size: 12px; color: var(--muted);
-  margin-top: 8px;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  font-weight: 600;
-}
-
-/* ===== SECTION ===== */
-section.s {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 88px 32px;
-}
-section.s.alt {
-  max-width: none;
-  background: var(--bg-soft);
-  padding: 0;
-}
-section.s.alt > .inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 88px 32px;
-}
-.s-head {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 64px;
-  align-items: start;
-  margin-bottom: 56px;
-}
-.s-head .label {
-  font-size: 12px; font-weight: 600;
-  color: var(--accent);
+.hero-stat .label {
+  margin-top: 10px;
+  font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
+  color: rgba(255,255,255,.78);
+  line-height: 1.4;
 }
-.s-head .label::before {
-  content: ""; display: inline-block;
-  width: 18px; height: 1px; background: var(--accent);
-  vertical-align: middle; margin-right: 10px;
-}
-.s-head h2 {
-  font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 700; letter-spacing: -0.022em;
-  line-height: 1.15;
-  margin-top: 16px;
-  color: var(--ink);
-}
-.s-head .blurb {
-  font-size: 16px; color: var(--muted);
-  line-height: 1.7;
-}
-.s-head .blurb p + p { margin-top: 16px; }
-.s-head .blurb strong { color: var(--ink-soft); font-weight: 600; }
 
-/* ===== PURPOSE GRID (3 cards) ===== */
+/* ===== SECTION HEAD BAND (mirrors PDF) ===== */
+.s-band {
+  background: linear-gradient(180deg, var(--png-blue) 0%, var(--png-blue-dark) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.s-band::before {
+  content: ""; position: absolute; inset: 0; opacity: .15;
+  background-image:
+    repeating-linear-gradient( 45deg, white 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(-45deg, white 0 1px, transparent 1px 18px);
+  pointer-events: none;
+}
+.s-band .inner {
+  position: relative;
+  max-width: var(--max); margin: 0 auto;
+  padding: 50px 32px;
+}
+.s-band h2 {
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: white;
+}
+.s-band h2 .amp { color: var(--png-yellow); font-weight: 800; padding: 0 .05em; }
+
+/* ===== CONTENT SECTIONS ===== */
+section.s {
+  background: white;
+}
+section.s.cream { background: var(--paper); }
+section.s .inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: 72px 32px;
+}
+
+/* Subhead style (like "PURPOSE", "BACKGROUND" in the PDF) */
+.subhead {
+  font-size: 13px; font-weight: 900;
+  color: var(--png-blue);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 14px;
+  position: relative;
+}
+.divider-y {
+  height: 1px; background: var(--png-yellow); width: 100%;
+  margin: 36px 0;
+  position: relative;
+}
+.divider-y::before {
+  content: ""; position: absolute; left: 0; top: -1px;
+  width: 56px; height: 3px; background: var(--png-yellow);
+}
+
+.s-grid-2 {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 56px;
+  align-items: start;
+}
+.s-grid-2 .col p,
+.s-block p {
+  font-size: 15.5px; color: var(--ink-soft);
+  line-height: 1.75;
+}
+.s-block p + p { margin-top: 14px; }
+.s-block p strong { color: var(--ink); font-weight: 700; }
+
+/* "What this report enables" 3 cards (mirrors PDF feel - blue title bands) */
 .feat3 {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 18px;
+  margin-top: 32px;
 }
 .feat-card {
   background: white;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 28px;
+  border-top: 4px solid var(--png-blue);
+  padding: 28px 26px;
 }
 .feat-card .ic {
-  width: 36px; height: 36px; border-radius: 8px;
-  background: rgba(24,65,107,.08); color: var(--accent);
+  width: 40px; height: 40px;
+  background: var(--png-blue); color: var(--png-yellow);
   display: grid; place-items: center;
   margin-bottom: 18px;
+  border-radius: 3px;
 }
 .feat-card h3 {
-  font-size: 16px; font-weight: 700;
-  margin-bottom: 8px;
-  letter-spacing: -0.01em;
+  font-size: 13.5px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--png-blue-deep);
+  margin-bottom: 10px;
 }
 .feat-card p {
-  font-size: 14px; color: var(--muted);
-  line-height: 1.6;
+  font-size: 13.5px; color: var(--muted); line-height: 1.65;
 }
 
 /* ===== CATEGORIES (3 large) ===== */
 .cats {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 16px;
 }
 .cat {
   background: white;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 32px;
-  transition: all 0.2s;
   display: flex; flex-direction: column;
-  min-height: 280px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none; color: inherit;
 }
 .cat:hover {
-  border-color: var(--ink);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(14,23,38,.08);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(8,35,72,.12);
 }
-.cat .cat-num {
-  font-size: 48px; font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--accent);
-  line-height: 1;
+.cat .cat-head {
+  background: linear-gradient(135deg, var(--png-blue) 0%, var(--png-blue-dark) 100%);
+  color: white; padding: 22px 24px;
+  position: relative; overflow: hidden;
 }
-.cat .cat-label {
-  font-size: 12px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--muted);
+.cat .cat-head::after {
+  content: ""; position: absolute; right: -20px; top: -20px;
+  width: 90px; height: 90px;
+  background-image:
+    repeating-linear-gradient( 45deg, rgba(245,197,24,.3) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(-45deg, rgba(245,197,24,.3) 0 1px, transparent 1px 8px);
+  transform: rotate(15deg);
+  opacity: 0.5;
+}
+.cat-num {
+  font-size: 40px; font-weight: 900;
+  color: var(--png-yellow);
+  letter-spacing: -0.03em; line-height: 1;
+}
+.cat-label {
+  font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: rgba(255,255,255,.78);
   margin-top: 4px;
 }
-.cat h3 {
-  font-size: 22px; font-weight: 700;
-  margin-top: 20px;
-  letter-spacing: -0.015em;
+.cat-body {
+  padding: 24px;
+  display: flex; flex-direction: column; flex: 1;
 }
-.cat p {
-  font-size: 14px; color: var(--muted);
-  margin-top: 10px; line-height: 1.6;
+.cat-body h3 {
+  font-size: 18px; font-weight: 800;
+  color: var(--png-blue-deep);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
 }
-.cat .examples {
-  font-size: 12px; color: var(--mute-soft);
-  margin-top: auto; padding-top: 20px;
+.cat-body p {
+  font-size: 13.5px; color: var(--muted);
+  line-height: 1.65;
+}
+.cat-body .examples {
+  font-size: 11.5px; color: var(--muted);
+  margin-top: auto; padding-top: 18px;
   border-top: 1px solid var(--line);
-}
-.cat .examples strong { color: var(--muted); font-weight: 600; }
-
-/* ===== TWO-COL ===== */
-.twocol {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 56px;
-}
-.col h3 {
-  font-size: 18px; font-weight: 700;
-  margin-bottom: 16px;
-  letter-spacing: -0.015em;
-}
-.col p, .col li {
-  font-size: 15px; color: var(--muted);
-  line-height: 1.7;
-}
-.col p + p { margin-top: 14px; }
-.col ul { margin-top: 12px; padding-left: 20px; }
-.col li { margin-bottom: 4px; }
-
-/* ===== FOCUS AREAS GRID ===== */
-.focus-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
-}
-.focus-pill {
-  background: white; border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-size: 13px; font-weight: 500;
-  color: var(--ink-soft);
-  text-align: center;
-  transition: all 0.15s;
-}
-.focus-pill:hover {
-  border-color: var(--accent); color: var(--accent);
-}
-
-/* ===== CTA BANNER ===== */
-.cta-banner {
-  background: var(--ink);
-  color: white;
-  margin: 0;
-}
-.cta-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 80px 32px;
-  display: grid;
-  grid-template-columns: 1.5fr auto;
-  gap: 56px;
-  align-items: center;
-}
-.cta-banner h2 {
-  font-size: clamp(28px, 3vw, 36px);
-  font-weight: 700; letter-spacing: -0.022em;
-  line-height: 1.2;
-}
-.cta-banner p {
-  margin-top: 16px;
-  font-size: 16px; color: rgba(255,255,255,.7);
-  max-width: 540px;
   line-height: 1.6;
 }
-.cta-banner .btn-primary {
-  background: white; color: var(--ink);
-  padding: 16px 26px;
-  font-size: 15px;
+.cat-body .examples strong {
+  display: block; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--png-blue); font-weight: 800;
+  margin-bottom: 4px;
 }
-.cta-banner .btn-primary:hover { background: var(--gold); color: var(--ink); transform: translateY(-1px); }
+.cat .cat-foot {
+  padding: 12px 24px;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  font-size: 11.5px; font-weight: 800;
+  color: var(--png-blue);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.cat .cat-foot .arrow { transition: transform 0.15s; }
+.cat:hover .cat-foot .arrow { transform: translateX(4px); }
+
+/* ===== SCOPE — focus area pills ===== */
+.pill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 22px;
+}
+.pill {
+  background: white; border: 1px solid var(--line);
+  border-left: 3px solid var(--png-yellow);
+  padding: 11px 14px;
+  font-size: 12.5px; font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* ===== CTA ===== */
+.cta {
+  background: var(--png-blue-deep);
+  color: white;
+  position: relative; overflow: hidden;
+}
+.cta::before {
+  content: ""; position: absolute; inset: 0; opacity: .08;
+  background-image:
+    repeating-linear-gradient( 45deg, white 0 1px, transparent 1px 14px),
+    repeating-linear-gradient(-45deg, white 0 1px, transparent 1px 14px);
+}
+.cta-inner {
+  position: relative;
+  max-width: var(--max); margin: 0 auto;
+  padding: 72px 32px;
+  display: grid;
+  grid-template-columns: 1.5fr auto;
+  gap: 48px;
+  align-items: center;
+}
+.cta h2 {
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  color: white;
+}
+.cta h2 .accent { color: var(--png-yellow); }
+.cta p {
+  margin-top: 16px;
+  font-size: 15px;
+  color: rgba(255,255,255,.72);
+  max-width: 520px;
+  line-height: 1.6;
+}
 
 /* ===== FOOTER ===== */
 footer {
-  border-top: 1px solid var(--line);
-  padding: 40px 32px 56px;
+  background: var(--png-blue-deep);
+  color: rgba(255,255,255,.72);
+  padding: 40px 32px 28px;
+  font-size: 12.5px;
+  border-top: 2px solid var(--png-yellow);
 }
 .foot-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 40px;
-  font-size: 13px;
-  color: var(--muted);
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 36px;
 }
 .foot-inner h4 {
-  font-size: 12px; font-weight: 700;
-  color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em;
-  margin-bottom: 12px;
+  font-size: 11px; font-weight: 900;
+  color: var(--png-yellow);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 10px;
 }
 .foot-inner ul { list-style: none; }
 .foot-inner li { margin-bottom: 6px; }
-.foot-inner a:hover { color: var(--ink); }
+.foot-inner a:hover { color: var(--png-yellow); }
 .foot-meta {
-  max-width: var(--max);
-  margin: 32px auto 0;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-  font-size: 12px; color: var(--mute-soft);
+  max-width: var(--max); margin: 28px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.12);
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-size: 11.5px; color: rgba(255,255,255,.5);
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 880px) {
   .nav-links { display: none; }
-  .hero { padding: 56px 24px 40px; }
-  .stats { grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 24px; }
-  section.s, section.s.alt > .inner { padding: 56px 24px; }
-  .s-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 36px; }
+  .hero-inner { grid-template-columns: 1fr; padding: 56px 24px 44px; gap: 32px; }
+  .hero-stats { border-left: none; border-top: 1px solid rgba(255,255,255,.18); padding-left: 0; padding-top: 24px; }
+  .s-band .inner, section.s .inner { padding: 48px 24px; }
   .feat3, .cats { grid-template-columns: 1fr; }
-  .twocol { grid-template-columns: 1fr; gap: 32px; }
-  .cta-inner { grid-template-columns: 1fr; padding: 56px 24px; gap: 28px; }
+  .s-grid-2 { grid-template-columns: 1fr; gap: 32px; }
+  .cta-inner { grid-template-columns: 1fr; padding: 56px 24px; gap: 24px; }
   .foot-inner { grid-template-columns: 1fr; gap: 24px; }
 }
 </style>
@@ -415,206 +509,233 @@ footer {
       <span class="org">National Department of Education</span>
     </div>
     <div class="nav-links">
-      <a href="#purpose">Purpose</a>
-      <a href="#categories">Categories</a>
+      <a href="#intro">Introduction</a>
+      <a href="#contents">Contents</a>
       <a href="#scope">Scope &amp; Methods</a>
-      <a href="#focus">Focus Areas</a>
     </div>
     <a href="dashboard.html" class="nav-cta">Open Dashboard →</a>
   </div>
 </nav>
 
+<!-- ===== HERO / COVER ===== -->
 <header class="hero">
-  <div class="eyebrow">NDoE Partnership Mapping · 2025</div>
-  <h1>
-    Mapping the partnerships shaping
-    <span class="accent">Papua New Guinea's</span>
-    education future.
-  </h1>
-  <p class="lede">
-    A visual overview of education stakeholders, partnerships, and key investments in PNG's
-    education sector — endorsed by the National Department of Education and validated by all partners.
-  </p>
-  <div class="hero-actions">
-    <a href="dashboard.html" class="btn btn-primary">Explore the Dashboard <span class="arrow">→</span></a>
-    <a href="#purpose" class="btn btn-secondary">About this report</a>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">NDoE · Partnership Mapping · 2025</div>
+      <h1>
+        Education
+        <span class="accent">Partnership</span>
+        Mapping
+        <span class="year">2025</span>
+      </h1>
+      <p class="lede">
+        A visual overview of education stakeholders, partnerships, and key investments
+        in Papua New Guinea's education sector — endorsed by the National Department of
+        Education and validated by all partners.
+      </p>
+      <div class="hero-actions">
+        <a href="dashboard.html" class="btn btn-yellow">Open the Dashboard <span class="arrow">→</span></a>
+        <a href="#intro" class="btn btn-ghost">About this report</a>
+      </div>
+    </div>
+    <div class="hero-stats" aria-label="At a glance">
+      <div class="hero-stat">
+        <div class="num">24</div>
+        <div class="label">Partners mapped</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">106</div>
+        <div class="label">Programs &amp; projects</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">22<small>+1</small></div>
+        <div class="label">Provinces + NCD covered</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">15</div>
+        <div class="label">NEP focus areas</div>
+      </div>
+    </div>
   </div>
 </header>
 
-<section class="stats">
-  <div class="stat">
-    <div class="num">24</div>
-    <div class="label">Partners mapped</div>
-  </div>
-  <div class="stat">
-    <div class="num">106</div>
-    <div class="label">Major programs &amp; projects</div>
-  </div>
-  <div class="stat">
-    <div class="num">22<small>+1</small></div>
-    <div class="label">Provinces + NCD covered</div>
-  </div>
-  <div class="stat">
-    <div class="num">15</div>
-    <div class="label">NEP-aligned focus areas</div>
-  </div>
-</section>
+<div class="bilum"></div>
 
-<!-- ===== PURPOSE ===== -->
-<section class="s" id="purpose">
-  <div class="s-head">
-    <div>
-      <div class="label">Purpose</div>
-      <h2>A coordination tool for evidence-based decisions.</h2>
-    </div>
-    <div class="blurb">
-      <p>This partnership mapping provides a <strong>comprehensive visual and strategic overview</strong> of Papua New Guinea's education sector landscape. It identifies key stakeholders, investment flows, and collaborative mechanisms that support PNG's education transformation agenda.</p>
-      <p>The report is designed to strengthen coordination among development partners, eliminate duplication, and optimize the strategic alignment of international and domestic investments with national education priorities.</p>
-    </div>
-  </div>
-
-  <div class="feat3">
-    <div class="feat-card">
-      <div class="ic">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <h3>Strengthen coordination</h3>
-      <p>Enables NDoE, bilateral and multilateral donors, implementing organisations, civil society, and private sector to align around shared priorities.</p>
-    </div>
-    <div class="feat-card">
-      <div class="ic">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>
-      </div>
-      <h3>Eliminate duplication</h3>
-      <p>Make investment flows and program footprints transparent across all 22 provinces, so resources reach where they're most needed.</p>
-    </div>
-    <div class="feat-card">
-      <div class="ic">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-      </div>
-      <h3>Align with national plan</h3>
-      <p>Anchored to the National Education Plan's focus areas and the Education Transformation Vision 2075.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CATEGORIES ===== -->
-<section class="s alt" id="categories">
+<!-- ===== INTRODUCTION & OBJECTIVES ===== -->
+<div class="s-band" id="intro">
   <div class="inner">
-    <div class="s-head">
+    <h2>Introduction <span class="amp">&amp;</span> Objectives</h2>
+  </div>
+</div>
+
+<section class="s">
+  <div class="inner">
+    <div class="s-grid-2">
       <div>
-        <div class="label">Report Structure</div>
-        <h2>Three categories of partners.</h2>
+        <div class="subhead">Purpose</div>
+        <div class="s-block">
+          <p>This partnership mapping provides a <strong>comprehensive visual and strategic overview</strong> of Papua New Guinea's education sector landscape. It identifies key stakeholders, investment flows, and collaborative mechanisms that support PNG's education transformation agenda.</p>
+          <p>The report is designed to strengthen coordination among development partners, eliminate duplication, and optimize the strategic alignment of international and domestic investments with national education priorities.</p>
+        </div>
       </div>
-      <div class="blurb">
-        <p>Partners are organised into the three groups that shape PNG's education ecosystem — from government-to-government investments at the system level, to on-the-ground programs delivered by civil society and local organisations.</p>
+      <div>
+        <div class="subhead">Background</div>
+        <div class="s-block">
+          <p>This mapping exercise was initiated by the Project Management &amp; Aid Coordination Division of the National Department of Education in response to the need for greater transparency and strategic oversight of partnership activities.</p>
+          <p>The effort reflects PNG's commitment to aid effectiveness principles and supports the implementation of the National Education Plan through more coordinated, evidence-informed approaches to education development.</p>
+        </div>
       </div>
     </div>
 
+    <div class="divider-y"></div>
+
+    <div class="subhead">What this report enables</div>
+    <div class="feat3">
+      <div class="feat-card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Strengthen Coordination</h3>
+        <p>Enables NDoE, bilateral and multilateral donors, implementing organisations, civil society, and private sector to align around shared priorities.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg></div>
+        <h3>Eliminate Duplication</h3>
+        <p>Make investment flows and program footprints transparent across all 22 provinces, so resources reach where they're most needed.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+        <h3>Align with National Plan</h3>
+        <p>Anchored to the National Education Plan's focus areas and the Education Transformation Vision 2075.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bilum light"></div>
+
+<!-- ===== CONTENTS & OUTLINE ===== -->
+<div class="s-band" id="contents">
+  <div class="inner">
+    <h2>Contents <span class="amp">&amp;</span> Outline</h2>
+  </div>
+</div>
+
+<section class="s cream">
+  <div class="inner">
     <div class="cats">
-      <a href="dashboard.html#bilateral" class="cat">
-        <div class="cat-num">7</div>
-        <div class="cat-label">Bilateral</div>
-        <h3>Government-to-government partnerships</h3>
-        <p>Foreign governments contributing to system reform, scholarships, infrastructure development, and targeted program support.</p>
-        <div class="examples"><strong>Includes:</strong> Australia (DFAT) · UK (FCDO) · Japan (JICA) · NZ (MFAT) · China · USA · Indonesia</div>
+      <a href="dashboard.html" class="cat">
+        <div class="cat-head">
+          <div class="cat-num">07</div>
+          <div class="cat-label">Bilateral Partners</div>
+        </div>
+        <div class="cat-body">
+          <h3>Government-to-government partnerships</h3>
+          <p>Foreign governments contributing to system reform, scholarships, infrastructure development, and targeted program support.</p>
+          <div class="examples">
+            <strong>Includes</strong>
+            Australia (DFAT) · UK (FCDO) · Japan (JICA) · NZ (MFAT) · China · USA · Indonesia
+          </div>
+        </div>
+        <div class="cat-foot"><span>View partners</span><span class="arrow">→</span></div>
       </a>
-      <a href="dashboard.html#multilateral" class="cat">
-        <div class="cat-num">5</div>
-        <div class="cat-label">Multilateral</div>
-        <h3>Banks, UN agencies &amp; global partnerships</h3>
-        <p>Bringing large-scale financing, technical expertise, and regional frameworks to strengthen PNG's education sector.</p>
-        <div class="examples"><strong>Includes:</strong> World Bank · ADB · UNICEF · UNESCO · European Union</div>
+      <a href="dashboard.html" class="cat">
+        <div class="cat-head">
+          <div class="cat-num">05</div>
+          <div class="cat-label">Multilateral Partners</div>
+        </div>
+        <div class="cat-body">
+          <h3>Banks, UN agencies &amp; global partnerships</h3>
+          <p>Bringing large-scale financing, technical expertise, and regional frameworks to strengthen PNG's education sector.</p>
+          <div class="examples">
+            <strong>Includes</strong>
+            World Bank · ADB · UNICEF · UNESCO · European Union
+          </div>
+        </div>
+        <div class="cat-foot"><span>View partners</span><span class="arrow">→</span></div>
       </a>
-      <a href="dashboard.html#implementing" class="cat">
-        <div class="cat-num">12</div>
-        <div class="cat-label">Implementing</div>
-        <h3>NGOs &amp; civil society organisations</h3>
-        <p>International and local NGOs delivering programs in schools and communities — literacy, teacher training, inclusion, and digital learning.</p>
-        <div class="examples"><strong>Includes:</strong> Save the Children · World Vision · CARE · ChildFund · Plan · Room to Read · KTF · BBP · WINGS · PEAN · EPF · Catalpa</div>
+      <a href="dashboard.html" class="cat">
+        <div class="cat-head">
+          <div class="cat-num">12</div>
+          <div class="cat-label">Implementing Partners</div>
+        </div>
+        <div class="cat-body">
+          <h3>NGOs &amp; civil society organisations</h3>
+          <p>International and local NGOs delivering programs in schools and communities — literacy, teacher training, inclusion, and digital learning.</p>
+          <div class="examples">
+            <strong>Includes</strong>
+            Save the Children · World Vision · CARE · ChildFund · Plan · Room to Read · KTF · BBP · WINGS · PEAN · EPF · Catalpa
+          </div>
+        </div>
+        <div class="cat-foot"><span>View partners</span><span class="arrow">→</span></div>
       </a>
     </div>
   </div>
 </section>
+
+<div class="bilum"></div>
 
 <!-- ===== SCOPE & METHODS ===== -->
-<section class="s" id="scope">
-  <div class="s-head">
-    <div>
-      <div class="label">Scope &amp; Methods</div>
-      <h2>Nationwide coverage, validated data.</h2>
-    </div>
-    <div class="blurb">
-      <p>The mapping encompasses Papua New Guinea's complete education ecosystem, capturing activities and investments across <strong>all 22 provinces and the National Capital District</strong> — from urban centres to the most remote rural communities.</p>
-    </div>
-  </div>
-
-  <div class="twocol">
-    <div class="col">
-      <h3>Geographic &amp; thematic coverage</h3>
-      <p>Activities span every region of the country. Areas of focus are aligned to the National Education Plan and include:</p>
-      <ul>
-        <li>Early childhood education</li>
-        <li>Primary and elementary education</li>
-        <li>Secondary &amp; technical education (TVET)</li>
-        <li>Inclusive education &amp; disability</li>
-        <li>Teacher training &amp; curriculum development</li>
-        <li>Infrastructure, WASH, and digital learning</li>
-        <li>System strengthening &amp; policy</li>
-      </ul>
-    </div>
-    <div class="col">
-      <h3>How the data was gathered</h3>
-      <p>The mapping exercise used <strong>Kobotoolbox</strong> for digital data collection, administering structured surveys to education sector partners operating in Papua New Guinea to capture organisational and program information.</p>
-      <p>Following collection, the team consolidated responses, cleaned and standardised entries, and validated each entry by cross-referencing against known program information. Where gaps existed, supplementary information was gathered from partner websites, annual reports, and program documentation.</p>
-      <p>This dashboard reflects the <strong>endorsed final version</strong> — checked by all partners and approved by the NDoE.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOCUS AREAS ===== -->
-<section class="s alt" id="focus">
+<div class="s-band" id="scope">
   <div class="inner">
-    <div class="s-head">
+    <h2>Scope <span class="amp">&amp;</span> Methods</h2>
+  </div>
+</div>
+
+<section class="s">
+  <div class="inner">
+    <div class="s-grid-2">
       <div>
-        <div class="label">NEP Focus Areas</div>
-        <h2>15 areas of strategic investment.</h2>
+        <div class="subhead">Geographic Coverage</div>
+        <div class="s-block">
+          <p>This partnership mapping encompasses Papua New Guinea's complete education ecosystem, capturing activities and investments across <strong>all 22 provinces and the National Capital District</strong>.</p>
+          <p>The comprehensive geographic coverage ensures no region is overlooked — from urban centres to the most remote rural communities — providing a complete picture of education development efforts nationwide.</p>
+        </div>
       </div>
-      <div class="blurb">
-        <p>Every partner's programming has been tagged against the National Education Plan focus areas. The dashboard lets you filter and compare partner coverage across each.</p>
+      <div>
+        <div class="subhead">Methods</div>
+        <div class="s-block">
+          <p>The exercise used <strong>Kobotoolbox</strong> for digital data collection, administering structured surveys to education sector partners operating in Papua New Guinea to capture organisational and program information.</p>
+          <p>Responses were consolidated, cleaned and standardised, and <strong>validated</strong> by cross-referencing against known program information. Where gaps existed, supplementary information was gathered from partner websites, annual reports, and program documentation.</p>
+        </div>
       </div>
     </div>
-    <div class="focus-grid">
-      <div class="focus-pill">Early Childhood Education</div>
-      <div class="focus-pill">Primary &amp; Elementary</div>
-      <div class="focus-pill">Secondary</div>
-      <div class="focus-pill">TVET</div>
-      <div class="focus-pill">Teacher Training</div>
-      <div class="focus-pill">Tertiary &amp; Scholarships</div>
-      <div class="focus-pill">Curriculum</div>
-      <div class="focus-pill">Infrastructure</div>
-      <div class="focus-pill">Inclusive Education</div>
-      <div class="focus-pill">Girls' Education &amp; Gender</div>
-      <div class="focus-pill">Literacy &amp; Numeracy</div>
-      <div class="focus-pill">Digital Learning</div>
-      <div class="focus-pill">Emergency Response</div>
-      <div class="focus-pill">System Strengthening</div>
-      <div class="focus-pill">WASH</div>
+
+    <div class="divider-y"></div>
+
+    <div class="subhead">Areas of Focus — Aligned to the National Education Plan</div>
+    <div class="pill-grid">
+      <div class="pill">Early Childhood Education</div>
+      <div class="pill">Primary &amp; Elementary</div>
+      <div class="pill">Secondary</div>
+      <div class="pill">TVET</div>
+      <div class="pill">Teacher Training</div>
+      <div class="pill">Tertiary &amp; Scholarships</div>
+      <div class="pill">Curriculum Development</div>
+      <div class="pill">Infrastructure</div>
+      <div class="pill">Inclusive Education</div>
+      <div class="pill">Girls' Education &amp; Gender</div>
+      <div class="pill">Literacy &amp; Numeracy</div>
+      <div class="pill">Digital Learning</div>
+      <div class="pill">Emergency Response</div>
+      <div class="pill">System Strengthening</div>
+      <div class="pill">WASH</div>
     </div>
   </div>
 </section>
 
 <!-- ===== CTA ===== -->
-<section class="cta-banner">
+<section class="cta">
   <div class="cta-inner">
     <div>
-      <h2>Explore all 24 partners across PNG's education ecosystem.</h2>
-      <p>An interactive dashboard with filterable partner cards, comparison tables, province-by-province coverage, and analytics.</p>
+      <h2>Explore the Interactive <span class="accent">Dashboard.</span></h2>
+      <p>Browse all 24 partners across PNG's education ecosystem — filter by category, focus area, or province; view the Leaflet province map; export tables; drill into any partner's full profile.</p>
     </div>
-    <a href="dashboard.html" class="btn btn-primary">Open Dashboard <span class="arrow">→</span></a>
+    <a href="dashboard.html" class="btn btn-yellow">Open Dashboard <span class="arrow">→</span></a>
   </div>
 </section>
 
+<div class="bilum"></div>
+
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="foot-inner">
     <div>
@@ -625,8 +746,8 @@ footer {
       <h4>Navigate</h4>
       <ul>
         <li><a href="dashboard.html">Interactive dashboard</a></li>
-        <li><a href="#purpose">Purpose</a></li>
-        <li><a href="#categories">Partner categories</a></li>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#contents">Categories</a></li>
         <li><a href="#scope">Scope &amp; methods</a></li>
       </ul>
     </div>
@@ -641,7 +762,7 @@ footer {
   </div>
   <div class="foot-meta">
     <span>Education Partnership Mapping 2025 — Endorsed Final Report</span>
-    <span>Source of truth: NDoE 2025 Partnership Mapping Survey</span>
+    <span>Source: NDoE 2025 Partnership Mapping Survey</span>
   </div>
 </footer>
 
