@@ -179,7 +179,7 @@ const PARTNERS = [
     coordination: ["Local Education Group", "TVET Sub-Committee"],
     programs: [
       { name: "Improved TVET for Employment Project (ITVET4E)", funding: "USD 66.3M (ADB 50M + Aus 10.6M + PNG 5.7M), 2022-2030", desc: "Comprehensive TVET reform upgrading 10 technical colleges across Bougainville, Eastern Highlands, Madang, Morobe, NCD, Simbu, West New Britain, Western Highlands. Includes Centers of Excellence in construction and agriculture, gender-responsive infrastructure." },
-      { name: "ITEVET4E Phase 2", funding: "USD 60M, planned 2028", desc: "Follow-on investment to scale TVET reforms, expand skills development, strengthen employment outcomes." },
+      { name: "ITVET4E Phase 2", funding: "USD 60M, planned 2028", desc: "Follow-on investment to scale TVET reforms, expand skills development, strengthen employment outcomes." },
       { name: "Education Access and Quality Improvement Project (EAQIP)", funding: "USD 60M loan + co-financing, planned 2027", desc: "Will enhance basic education services through improved infrastructure, teaching quality, inclusive access." },
       { name: "ADB-Japan Scholarship Program", funding: "Ongoing", desc: "Graduate scholarships at partner universities across Asia-Pacific." }
     ],
