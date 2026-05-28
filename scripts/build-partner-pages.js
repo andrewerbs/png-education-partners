@@ -77,14 +77,19 @@ function render(p) {
     </article>
   `).join("");
 
-  const coordList = p.coordination.map(c => `<li>${esc(c)}</li>`).join("");
+  // Coordination supports two shapes: legacy string[] or {name, description}[]
+  const coordList = p.coordination.map(c => {
+    if (typeof c === "string") return `<li><strong>${esc(c)}</strong></li>`;
+    return c.description
+      ? `<li><strong>${esc(c.name)}</strong> <span>— ${esc(c.description)}</span></li>`
+      : `<li><strong>${esc(c.name)}</strong></li>`;
+  }).join("");
+  // Strategic supports two shapes: legacy string[] or {title, detail}[]
   const strategicList = (p.strategic || []).map(s => {
-    // Strategic bullets often follow a "Headline\nSupporting copy" style
-    const parts = s.split(/(?<=^[^—]+)\n/);
-    if (parts.length >= 2) {
-      return `<li><strong>${esc(parts[0])}</strong><br><span>${esc(parts.slice(1).join(" "))}</span></li>`;
-    }
-    return `<li><strong>${esc(s)}</strong></li>`;
+    if (typeof s === "string") return `<li><strong>${esc(s)}</strong></li>`;
+    return s.detail
+      ? `<li><strong>${esc(s.title)}</strong><br><span>${esc(s.detail)}</span></li>`
+      : `<li><strong>${esc(s.title)}</strong></li>`;
   }).join("");
 
   const provinceChips = (p.provinces.includes("all") ? ["All 22 provinces + NCD"] : p.provinces)
@@ -233,16 +238,18 @@ nav.top {
 
 /* Coordination as styled list */
 .coord-list { list-style: none; display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 10px 18px; }
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px 24px; }
 .coord-list li {
-  position: relative; padding-left: 24px;
-  font-size: 14.5px; color: var(--ink-soft); line-height: 1.55;
+  position: relative; padding-left: 26px;
+  font-size: 14px; color: var(--ink-soft); line-height: 1.55;
 }
 .coord-list li::before {
-  content: ""; position: absolute; left: 0; top: 9px;
-  width: 12px; height: 2px; background: var(--png-yellow);
+  content: ""; position: absolute; left: 0; top: 10px;
+  width: 14px; height: 2px; background: var(--png-yellow);
 }
+.coord-list strong { color: var(--ink); font-weight: 700; }
+.coord-list span { color: var(--muted); }
 
 /* Program cards in two-column grid like the PDF */
 .program-grid {

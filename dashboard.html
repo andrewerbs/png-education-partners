@@ -1210,7 +1210,15 @@ function openModal(p) {
 
   body.appendChild(elem("h3", null, "Coordination Mechanisms"));
   const ul1 = elem("ul");
-  p.coordination.forEach(c => ul1.appendChild(elem("li", null, c)));
+  p.coordination.forEach(c => {
+    if (typeof c === "string") {
+      ul1.appendChild(elem("li", null, c));
+    } else {
+      ul1.appendChild(elem("li", null, c.description
+        ? `<strong>${c.name}</strong> — ${c.description}`
+        : `<strong>${c.name}</strong>`));
+    }
+  });
   body.appendChild(ul1);
 
   body.appendChild(elem("h3", null, `Major Programs & Projects (${p.programs.length})`));
@@ -1240,7 +1248,15 @@ function openModal(p) {
   if (p.strategic && p.strategic.length) {
     body.appendChild(elem("h3", null, "Strategic Value"));
     const ul2 = elem("ul");
-    p.strategic.forEach(s => ul2.appendChild(elem("li", null, s)));
+    p.strategic.forEach(s => {
+      if (typeof s === "string") {
+        ul2.appendChild(elem("li", null, s));
+      } else {
+        ul2.appendChild(elem("li", null, s.detail
+          ? `<strong>${s.title}</strong> — ${s.detail}`
+          : `<strong>${s.title}</strong>`));
+      }
+    });
     body.appendChild(ul2);
   }
 

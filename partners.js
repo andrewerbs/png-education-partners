@@ -25,20 +25,29 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1975,
     flagshipFunding: "~AUD 100M annually",
-    about: "Papua New Guinea's largest development partner. Partnership began at PNG's independence in 1975 and has evolved into a comprehensive strategic relationship spanning all education levels. Underpinned by the PNG-Australia Comprehensive Strategic and Economic Partnership (CSEP, 2020) and the Australia-PNG Development Partnership Plan (DPP, 2024-29).",
-    coordination: ["PNG-Australia Ministerial Forum", "LEG meetings"],
+    about: "Australia, through the Department of Foreign Affairs and Trade (DFAT), is Papua New Guinea's largest development partner and plays a pivotal role in PNG's education sector. The partnership began at PNG's independence in 1975 and has evolved into a comprehensive strategic relationship spanning all education levels. DFAT views education as essential for building PNG's human capital and long-term prosperity, with support underpinned by high-level bilateral agreements, including the PNG-Australia Comprehensive Strategic and Economic Partnership (CSEP, 2020) and the Australia-PNG Development Partnership Plan (DPP, 2024-29). Australia's approach focuses on inclusive and equitable improvement of learning outcomes, targeting critical challenges such as low literacy/numeracy rates, gender disparities, and rural access barriers through close collaboration with PNG's National Department of Education.",
+    coordination: [
+      { name: "PNG-Australia Ministerial Forum", description: "Annual high-level policy dialogue and commitment review" },
+      { name: "LEG meetings", description: "Active participant in Local Education Group coordination" }
+    ],
     programs: [
-      { name: "Partnerships for Improving Education (PIE)", funding: "AUD 75M (2022-2027)", desc: "Flagship 5-year early grades program improving student learning outcomes and school attendance for children in Prep-Grade 2, with a particular focus on girls and children with disabilities across four target subnational locations." },
-      { name: "Pacific Australia Skills (PAS)", funding: "AUD 229M regional (2025-2029)", desc: "Regional program supporting skills for inclusive employment and Australian labour mobility opportunities." },
-      { name: "PNG Secondary Education Program", funding: "AUD 25M (2026-2029)", desc: "Secondary STEM program boosting outcomes, leadership, student safety, climate resilience." },
-      { name: "Global Partnership for Education Programs", funding: "AUD 169M (2021-25)", desc: "Bilateral donor and GPE board member supporting teacher training, textbook distribution, system strengthening." },
-      { name: "Australia Awards PNG", funding: "6,500+ recipients since 2012", desc: "Tertiary scholarships and short-term professional development." },
-      { name: "PNG-Australia Incentive Fund", funding: "AUD 90.8M education since 2000", desc: "Infrastructure grants from primary schools to universities including classrooms, labs, dorms, teacher housing." },
-      { name: "Strongim Wok Long TVET (SWLT)", funding: "AUD 80M (2025-2029)", desc: "TVET sector improvements - curriculum development, teacher training, industry links, scholarships." }
+      { name: "Partnerships for Improving Education", funding: "AUD 75M over 5 years (2022-2027)", desc: "Australia's flagship 5-year early grades program improving student learning outcomes and school attendance for children in Prep-Grade 2, with a particular focus on girls and children with disabilities across four target subnational locations." },
+      { name: "Pacific Australia Skills (PAS)", funding: "AUD 229M regionally (2025-2029)", desc: "Australia's regional program supporting skills for inclusive employment. Focuses on partnering with local institutions to deliver training to support international labour mobility opportunities and other Australian regional initiatives." },
+      { name: "PNG Secondary Education Program", funding: "A$25M ≈ PGK 77M (2026-2029)", desc: "Secondary education program targeting high-performing schools to boost STEM outcomes through teacher development, promote leadership, student safety, climate resilience and build links between Australia and PNG's education systems." },
+      { name: "Global Partnership for Education Programs", funding: "AUD 169M ≈ PGK 521M total funding for global programs for 2021-25 period", desc: "Bilateral donor and GPE board member, supporting teacher training, textbook distribution and systems strengthening." },
+      { name: "Australia Awards PNG", funding: "Ongoing — over 6,500 scholarship recipients since 2012", desc: "Comprehensive scholarship program providing annual awards for tertiary studies in Australia and PNG, as well as short-term professional development studies targeting future leaders across priority development sectors." },
+      { name: "PNG-Australia Incentive Fund", funding: "AUD 90.8M ≈ PGK 275M education component since 2000", desc: "Infrastructure development program providing grants for education facility upgrades from primary schools to universities, including classrooms, laboratories, dormitories and teacher housing." },
+      { name: "Strongim Wok Long TVET (SWLT) program", funding: "AUD 80M (2025-2029)", desc: "Program supporting improvements in the TVET sector to help more Papua New Guineans gain skills that match workforce needs, including through curriculum development, teacher training, enhanced industry links, scholarships for women and persons with disabilities, and inclusive learning environments through wraparound support services for students." }
     ],
     provinces: ["all"],
     focusAreas: ["Early Childhood Education", "Primary/Elementary", "Secondary", "TVET", "Teacher Training", "Tertiary/Scholarships", "Infrastructure", "Inclusive Education", "Girls' Education / Gender", "System Strengthening"],
-    strategic: ["Largest education donor (~A$100M annually)", "Comprehensive coverage from ECE to higher ed", "Geographic equity focus", "50-year institutional partnership", "Scholarship excellence (6,500+ since 2012)"]
+    strategic: [
+      { title: "Largest education donor", detail: "Providing nearly A$100 million annually with commitment to further scale-up, representing PNG's most substantial education partnership" },
+      { title: "Comprehensive coverage", detail: "Supporting all education levels from early childhood through higher education with an integrated approach addressing teacher training, curriculum, infrastructure, and policy" },
+      { title: "Geographic equity focus", detail: "Balancing national system support with targeted interventions in remote and underserved communities, including innovative approaches in challenging environments" },
+      { title: "Long-term institutional partnerships", detail: "50-year relationship enabling deep collaboration on education reform, policy development, and sustainable capacity building within PNG systems" },
+      { title: "Scholarship excellence", detail: "Developing PNG's future leaders, including in education, through prestigious tertiary education opportunities, with over 6,500 scholarship recipients since 2012 contributing to PNG's development across all sectors" }
+    ]
   },
   {
     id: "uk-fcdo",
@@ -48,17 +57,27 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1975,
     flagshipFunding: "Largest bilateral GPE donor 2021-25",
-    about: "Established in PNG in 1975 at independence. UK operates as a bilateral donor with a targeted, strategic approach focused primarily on multilateral funding through GPE and prestigious scholarship programs.",
-    coordination: ["LEG meetings", "Education Ministers' 2025 meetings in London", "Conference of Pacific Education Ministers 2025"],
+    about: "The British High Commission was established in Papua New Guinea in 1975, coinciding with PNG's independence, and has maintained diplomatic and development relations since then. The UK government operates as a bilateral donor with a targeted but strategic approach, focusing primarily on multilateral funding through the Global Partnership for Education and prestigious scholarship programs. While not among the largest donors by volume, the UK's contributions complement those of other donors by leveraging global partnerships and emphasising girls' education, human capital development, and system-strengthening approaches that align with PNG's development priorities.",
+    coordination: [
+      { name: "LEG meetings", description: "Active participant in Local Education Group coordination" },
+      { name: "Education Ministers' 2025 annual meetings in London", description: "" },
+      { name: "Conference of Pacific Education Ministers 2025", description: "" }
+    ],
     programs: [
-      { name: "Global Partnership for Education Programs", funding: "US$40.6M since 2010", desc: "Largest bilateral GPE donor globally 2021-25 (PGK 2.35B). Supports teacher training, textbook distribution, system strengthening reaching 3,500+ schools." },
-      { name: "British Council Teacher Training & Support", funding: "UK Government, 2023-2025", desc: "English teachers and education leaders, enhanced teacher capacity in English and inclusive education." },
-      { name: "Chevening and Commonwealth Scholarships", funding: "PGK 333,577 annually", desc: "Fully funded postgraduate Masters degrees at UK universities for future leaders." },
-      { name: "Commonwealth Scholarship Scheme", funding: "Ongoing", desc: "Merit-based PhD, Masters and Fellowship programs." }
+      { name: "Global Partnership for Education Programs", funding: "US$40.6M total funding for global programs since 2010", desc: "Bilateral donor contribution to GPE supporting teacher training, textbook distribution, and system strengthening reaching 3,500+ schools." },
+      { name: "British Council Teacher Training & Support", funding: "UK Government funded (2023-2025)", desc: "English teachers and education leaders, enhanced teacher capacity in English and inclusive education." },
+      { name: "Chevening and Commonwealth Scholarship Programmes", funding: "PGK 333,577 annually, ongoing", desc: "Fully funded postgraduate Masters degrees at UK universities for future leaders." },
+      { name: "Commonwealth Scholarship Scheme", funding: "Ongoing", desc: "Merit-based postgraduate scholarships covering PhD, Masters and Fellowship programs in priority development areas." }
     ],
     provinces: ["all"],
     focusAreas: ["Teacher Training", "Tertiary/Scholarships", "Girls' Education / Gender", "Inclusive Education", "System Strengthening"],
-    strategic: ["Largest bilateral GPE donor 2021-25 (PGK 2.35B)", "Major investor in World Bank IDA 2025-28 (PGK 9.7B)", "International scholarships", "Girls' education focus"]
+    strategic: [
+      { title: "Largest bilateral donor to GPE globally 2021-25 (PGK 2.35 billion)", detail: "Enabling nationwide teacher training and textbook distribution reaching over 3,500 schools" },
+      { title: "Major investor in World Bank IDA 2025-28 (PGK 9.7 billion)", detail: "Supporting large-scale education infrastructure and learning enhancement projects" },
+      { title: "Offering international scholarship opportunities that develop PNG's future education", detail: "Leaders and policy makers through world-class UK university programs" },
+      { title: "Long-term institutional partnerships", detail: "50-year relationship enabling deep collaboration on education reform, policy development, and sustainable capacity building within PNG systems" },
+      { title: "Leveraging diplomatic networks and technical expertise to facilitate knowledge exchange", detail: "Complement other donors' infrastructure investments, and promote evidence-based approaches to girls' education and inclusive learning" }
+    ]
   },
   {
     id: "indonesia",
@@ -68,16 +87,26 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1997,
     flagshipFunding: "2,000 scholarships (2023-28)",
-    about: "Significant development partner since establishing Indonesian AID in 2019. South-South cooperation model emphasising equality, mutual benefit, and shared prosperity. Partnership dramatically expanded since 2023 with major scholarship and infrastructure investments.",
-    coordination: ["Joint Ministerial Committee (JMC)", "Bilateral Leaders' Dialogues", "Framework Agreement on Development and Technical Cooperation"],
+    about: "Indonesia has emerged as a significant development partner for Papua New Guinea's education sector, particularly since establishing Indonesian AID in 2019. Through South-South cooperation initiatives, Indonesia emphasises \"equality, mutual benefit, and the pursuit of global prosperity\" in its development approach. The partnership, formalised through education cooperation frameworks dating back to 1997, has dramatically expanded since 2023 with major scholarship programs and infrastructure investments, positioning Indonesia as a key contributor to PNG's human capital development goals.",
+    coordination: [
+      { name: "Joint Ministerial Committee (JMC)", description: "Meeting in March 2023 focused on education cooperation" },
+      { name: "Bilateral Leaders' Dialogues", description: "Significant education commitments agreed in July 2023" },
+      { name: "Framework Agreement on Development and Technical Cooperation", description: "" }
+    ],
     programs: [
-      { name: "I2,000 Scholarships Initiative (TIAS & KNB)", funding: "Launched July 2023, 2023-28+", desc: "Fully funded Diploma, Undergraduate, Master's, and PhD degrees for up to 2,000 PNG students at Indonesian universities. Targets engineering, agriculture, education, medicine, & other strategic sectors." },
-      { name: "Wutung Primary School Renovation", funding: "PGK 5M from PGK 60M package, completed 2024", desc: "Border-area infrastructure improving basic education facilities in West Sepik Province." },
-      { name: "Basic and Secondary Education MoU Programs", funding: "Signed 2023, ongoing", desc: "Teacher exchanges, curriculum development, sister-school relationships between PNG and Indonesian institutions." }
+      { name: "I2,000 Scholarships Initiative (TIAS & KNB Scholarship Schemes)", funding: "Launch July 2023; implementation 2023-28, scholarships continuing beyond 2025", desc: "A major education cooperation framework and political commitment providing fully funded Diploma, Undergraduate, Master's, and Doctoral (PhD) degree opportunities for up to 2,000 Papua New Guinean students at Indonesian universities. This initiative consolidates the Indonesian Aid Scholarship Program (TIAS) and the KNB Scholarship Scheme, targeting young public servants, educators, professionals, and high-performing school leavers, with mandatory Indonesian language preparatory studies and priority fields aligned with PNG's national development needs, including engineering, agriculture, education, medicine, & other strategic sectors." },
+      { name: "Wutung Primary School Renovation", funding: "PGK 5M from PGK 60M grant package, completed 2024", desc: "Infrastructure development improving basic education facilities in PNG's border area (West Sepik Province), including school reconstruction and electricity infrastructure provision." },
+      { name: "Basic and Secondary Education MoU Programs", funding: "Signed 2023, ongoing", desc: "Framework facilitating teacher exchanges, curriculum development support, and sister-school relationships between PNG and Indonesian institutions at Basic, primary and secondary levels as well as TVET." }
     ],
     provinces: ["Sandaun (West Sepik)"],
     focusAreas: ["Tertiary/Scholarships", "Primary/Elementary", "Secondary", "TVET", "Curriculum", "Infrastructure"],
-    strategic: ["Large-scale scholarship provision (2,000 tertiary)", "South-South cooperation model", "Border community development (West Sepik)", "Alternative tertiary pathways", "Multi-level institutional linkages"]
+    strategic: [
+      { title: "Large-scale scholarship provision", detail: "Addressing skills gaps via 2,000 tertiary scholarships targeting PNG's need for professionals in education, engineering, health fields" },
+      { title: "South-South cooperation model", detail: "Development based on equality and mutual benefit, providing PNG with diversified international partnerships beyond traditional donors" },
+      { title: "Border community development", detail: "Targeted infrastructure investments improving educational access in remote West Sepik areas while strengthening bilateral relations" },
+      { title: "Alternative tertiary pathways", detail: "Complementing traditional donor support with diverse international education exposure and qualifications at Indonesian universities" },
+      { title: "Multi-level institutional linkages", detail: "MoUs covering basic, secondary, and higher education enabling knowledge exchange and capacity building across all education levels" }
+    ]
   },
   {
     id: "jica",
@@ -87,20 +116,30 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1974,
     flagshipFunding: "GPE coordinating agency (~US$40.7M)",
-    about: "Operating in PNG since 1974, JICA is one of the longest-serving development partners. Formally established relations with NDoE in 1980. Since 2022, serves as the coordinating agency for the Global Partnership for Education in PNG. Focus on technical cooperation, capacity building, and STEM education.",
-    coordination: ["LEG meetings", "Education Donor Partner Coordination Committee (EDPaCC)", "SEOC meetings"],
+    about: "Japan International Cooperation Agency has been operating in Papua New Guinea since 1974, making it one of the longest-serving development partners in the country. JICA formally established relations with the National Department of Education in 1980 and has since become a cornerstone of PNG's education development. The agency focuses on technical cooperation, capacity building, and sustainable development aligned with PNG's national priorities. Since 2022, JICA serves as the coordinating agency for the Global Partnership for Education in PNG, stewarding dialogue between the National Department of Education and international partners while promoting transparent, participatory approaches. JICA's mission aligns with improving access to and quality of basic education, supporting PNG's goals of achieving universal basic education and implementing the Standards-Based Curriculum.",
+    coordination: [
+      { name: "LEG meetings", description: "Active participant in Local Education Group coordination" },
+      { name: "Education Donor Partner Coordination Committee (EDPaCC) meetings", description: "" },
+      { name: "SEOC meetings", description: "Participates in sector oversight and coordination" }
+    ],
     programs: [
-      { name: "Quality Improvement of Mathematics and Science Education (QUISME)", funding: "¥581M + K1.5M (2016-2019)", desc: "Developed PNG's first national textbooks for Grades 3-6 math and science, training curriculum writers and teachers." },
-      { name: "Strengthening Primary Teacher Pre-service Education in Mathematics and Science (STEPMAS)", funding: "¥466M (~US$4.2M, 2021-2025)", desc: "Develops lecturer manuals and student-teacher modules across 15 primary teacher colleges, training 25 lecturers and creating 720 math and 360 science lesson plans." },
-      { name: "Enhancing Quality in Teaching through TV (EQUITV)", funding: "¥504M + ¥71.8M equipment (Phases 2005-2015)", desc: "Pioneered distance education via television, establishing National Education Media Centre." },
-      { name: "Japanese Volunteer Program", funding: "Ongoing in-kind", desc: "Over 800 Japanese volunteers dispatched since 1980s as teachers and technical experts." },
+      { name: "Quality Improvement of Mathematics and Science Education (QUISME)", funding: "¥581M + K1.5M, 2016-2019 (completed)", desc: "Developed PNG's first national textbooks for Grades 3-6 mathematics and science, training curriculum writers and teachers." },
+      { name: "Strengthening Primary Teacher Pre-service Education in Mathematics and Science (STEPMAS)", funding: "¥466M ≈ US$4.2M (2021-2025)", desc: "Develops lecturer manuals and student-teacher modules across 15 primary teacher colleges, training 25 lecturers and creating 720 maths and 360 science lesson plans." },
+      { name: "Enhancing Quality in Teaching through TV (EQUITV Phase 1 & 2)", funding: "Phase 1: 2005-2008; Phase 2: ¥504M + ¥71.8M equipment grant (2012-2015)", desc: "Pioneered distance education via television, establishing National Education Media Centre and broadcasting quality lessons nationwide." },
+      { name: "Japanese Volunteer Program", funding: "Ongoing, in-kind human resources", desc: "Over 800 Japanese volunteers dispatched since 1980s, serving as teachers and technical experts in schools nationwide." },
       { name: "Grassroots Human Security Projects", funding: "¥34M (2011-2014), continuing ¥5-10M annually", desc: "Community-level education infrastructure including classroom construction, equipment provision, and facility upgrades." },
-      { name: "National Fisheries College Upgrade", funding: "Grant aid signed June 2025, 2025-2027", desc: "Modernizing facilities and training equipment for fisheries and marine resource training." },
-      { name: "Boosting Education Standards Together (BEST PNG)", funding: "US$10.5M of US$21M total (~2019-2022)", desc: "Multi-donor program targeting 870,000 students through improved math/science education via GPE Multiplier mechanism." }
+      { name: "National Fisheries College Upgrade", funding: "Grant aid signed June 2025, implementation 2025-2027", desc: "Modernizing facilities and training equipment for fisheries and marine resource training." },
+      { name: "Boosting Education Standards Together (BEST PNG)", funding: "US$10.5M of US$21M total via GPE Multiplier (~2019-2022)", desc: "Multi-donor program targeting 870,000 students through improved math/science education, with Japan contributing US$10.5M via GPE Multiplier mechanism." }
     ],
     provinces: ["all"],
     focusAreas: ["Primary/Elementary", "Teacher Training", "Curriculum", "Infrastructure", "Digital Learning / EdTech", "TVET", "System Strengthening"],
-    strategic: ["GPE coordination leadership (~US$40.7M)", "Technical excellence in STEM", "Innovation in distance learning (EQUITV)", "Comprehensive multi-level approach", "Sustainable institutional capacity building"]
+    strategic: [
+      { title: "GPE coordination leadership", detail: "Serves as coordinating agency managing nearly $40.7 million in total GPE support, facilitating donor harmonisation and reducing duplication" },
+      { title: "Technical excellence in STEM education", detail: "Pioneering curriculum development, textbook creation, and teacher training methodologies specifically for mathematics and science education" },
+      { title: "Innovation in distance learning", detail: "First to establish educational television broadcasting in PNG, providing scalable solutions for remote area education delivery" },
+      { title: "Comprehensive multi-level approach", detail: "Integrates policy support, infrastructure development, capacity building, and grassroots initiatives for systemic education strengthening" },
+      { title: "Sustainable institutional capacity building", detail: "Focus on training local educators and developing PNG systems for long-term sustainability beyond project cycles" }
+    ]
   },
   {
     id: "nz-mfat",
@@ -110,17 +149,25 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1975,
     flagshipFunding: "NZ$4-5M annually + program funds",
-    about: "Steadfast development partner in PNG's education sector since independence in 1975. Positions itself as a targeted, niche donor that complements larger partners by focusing on human capital development, innovation pilots, and filling critical gaps.",
-    coordination: ["Pacific Regional Education Framework"],
+    about: "The New Zealand Ministry of Foreign Affairs and Trade (MFAT) has been a steadfast development partner in Papua New Guinea's education sector since PNG's independence in 1975. MFAT positions itself as a targeted, niche donor that complements larger partners by focusing on human capital development, innovation pilots, and filling critical gaps. Through its Pacific-focused approach, New Zealand emphasises quality education, inclusive learning, and sustainable capacity building as cornerstones of PNG's development journey.",
+    coordination: [
+      { name: "Pacific Regional Education Framework", description: "Co-financier program of implementation regionally" }
+    ],
     programs: [
-      { name: "Manaaki New Zealand Scholarships Programme", funding: "~NZ$4-5M annually, ongoing", desc: "Full tertiary scholarships for Papua New Guineans (570+ graduates since the 1970s, 71 current scholars)." },
-      { name: "MFAT-UNICEF Pacific Early Childhood Development Partnership", funding: "80% of program (2021-2026)", desc: "Establishes early childhood education centers, WASH facilities in schools, and child protection services across Morobe, East Sepik, Western Highlands, Simbu, Central, and Gulf provinces." },
-      { name: "Partnership for Open, Distance and Flexible Learning (ODFL)", funding: "NZ$10M regional (2020-2025)", desc: "Digital learning, teacher training, education hubs with internet connectivity, youth skills. Trained 384+ PNG teachers in online pedagogy across Jiwaka, Morobe, Madang, Eastern Highlands, Southern Highlands." },
-      { name: "Inclusive Education Initiative", funding: "MFAT Manaaki fund (2019-2022)", desc: "Through CBM NZ and Callan Services. Inclusive Education Resource Centres in Madang, East Sepik, Western Highlands, Central, Bougainville. Trained 85 mainstream teachers, enrolled 120+ children with disabilities." }
+      { name: "Manaaki New Zealand Scholarships Programme", funding: "~NZ$4-5M annually, ongoing", desc: "Provides full tertiary scholarships for Papua New Guineans to study in New Zealand, with 570+ graduates since the 1970s and 71 current scholars. Focus areas include education, health, agriculture, and public administration." },
+      { name: "MFAT-UNICEF Pacific Early Childhood Development Partnership", funding: "New Zealand provides 80% of program funding (2021-2026)", desc: "Establishes early childhood education centers, WASH facilities in schools, and child protection services across Morobe, Eastern Highlands, East Sepik, Western Highlands, Simbu, Central, and Gulf provinces." },
+      { name: "Partnership for Open, Distance and Flexible Learning (ODFL)", funding: "NZ$10M regional (2020-2025)", desc: "Strengthens digital learning through teacher training, education hubs with internet connectivity, and youth skills development. Has trained 384+ PNG teachers in online pedagogy across Jiwaka, Morobe, Madang, Eastern Highlands, and Southern Highlands." },
+      { name: "Inclusive Education Initiative", funding: "MFAT Manaaki fund (2019-2022)", desc: "Through CBM New Zealand and Callan Services, established Inclusive Education Resource Centres supporting children with disabilities in Madang, East Sepik, Western Highlands, Central, and Bougainville. Trained 85 mainstream teachers and enrolled 120+ children with disabilities in regular schools." }
     ],
     provinces: ["Bougainville (AROB)", "Central", "East Sepik", "Eastern Highlands", "Gulf", "Jiwaka", "Madang", "Morobe", "Chimbu (Simbu)", "Southern Highlands", "Western Highlands"],
     focusAreas: ["Early Childhood Education", "Teacher Training", "Tertiary/Scholarships", "Inclusive Education", "Digital Learning / EdTech", "WASH"],
-    strategic: ["Niche expertise in teacher quality", "Early childhood education leadership", "Technology and innovation focus", "Long-term human capital investment", "Evidence-based policy support"]
+    strategic: [
+      { title: "Niche expertise in teacher quality", detail: "Pioneering in-service teacher mentoring, digital professional development, and innovative pedagogical approaches" },
+      { title: "Early childhood education leadership", detail: "Catalyzing PNG's recognition of preschool education through successful community-based ECCE pilots" },
+      { title: "Technology and innovation focus", detail: "Leveraging digital learning solutions to bridge geographic gaps and improve access in remote areas" },
+      { title: "Long-term human capital investment", detail: "Building PNG's future leaders through 50+ years of scholarship programs with strong alumni networks" },
+      { title: "Evidence-based policy support", detail: "Contributing to global education monitoring and strengthening PNG's data systems for informed decision-making" }
+    ]
   },
   {
     id: "china-prc",
@@ -130,17 +177,27 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1976,
     flagshipFunding: "~1,000 PNG scholarship beneficiaries",
-    about: "Significant development partner since 1976. As PNG's largest Pacific development partner, China emphasises capacity-building through its 'teaching a man to fish' philosophy. Under the Belt and Road Initiative (which PNG joined in 2018), education features prominently as a priority sector.",
-    coordination: ["Bilateral Government-to-Government", "Belt and Road Initiative Framework", "China-Pacific Island Countries Ministerial Meetings"],
+    about: "China has been a significant development partner in PNG's education sector since diplomatic relations began in 1976, framing its support as part of human resource development and bilateral cooperation. As PNG's largest Pacific development partner, China emphasises capacity-building through its \"teaching a man to fish\" philosophy, combining grant aid with people-to-people exchanges. Under the Belt and Road Initiative (which PNG joined in 2018), education features prominently alongside infrastructure and health as a key sector for connectivity and improving livelihoods.",
+    coordination: [
+      { name: "Bilateral Government-to-Government", description: "Direct coordination via Chinese Embassy and PNG ministries" },
+      { name: "Belt and Road Initiative Framework", description: "Education as a priority sector for development cooperation" },
+      { name: "China-Pacific Island Countries Ministerial Meetings", description: "Regional platform for education commitments" }
+    ],
     programs: [
-      { name: "Butuka Academy (PNG-China Friendship School)", funding: "PGK 70M Shenzhen Municipal Government, 2018-ongoing", desc: "Modern K-12 facility in Port Moresby with 58 classrooms, serving 2,700+ students. Includes science labs, library, sports facilities, teacher accommodations, with 20-year maintenance program." },
-      { name: "Western Pacific University Infrastructure", funding: "PGK 50M grant (2018-2022, operational)", desc: "Phase-one development of PNG's newest university in Southern Highlands, including digital library (first of its kind in PNG), teaching buildings, dormitories, faculty housing." },
-      { name: "Government Scholarship Program", funding: "40+ years ongoing, ~1,000 beneficiaries", desc: "30-50 fully-funded undergraduate and postgraduate scholarships annually at Chinese universities, plus 100+ short-term training positions." },
-      { name: "TVET and Secondary Education Support", funding: "PGK 50M grant announced 2023, ongoing", desc: "Targeted funding for secondary schools and technical institutions including planned Enga Province Polytechnic Institute." }
+      { name: "Butuka Academy (PNG-China Friendship School)", funding: "PGK 70M grant from Shenzhen Municipal Government, 2018-ongoing", desc: "Modern K-12 facility in Port Moresby with 58 classrooms, serving 2,700+ students. Includes science labs, library, sports facilities, and teacher accommodations, with 20-year maintenance program." },
+      { name: "Western Pacific University Infrastructure", funding: "PGK 50M grant (2018-2022, operational)", desc: "Phase-one development of PNG's newest university in Southern Highlands, including digital library (first of its kind in PNG), teaching buildings, student dormitories, and faculty housing." },
+      { name: "Government Scholarship Program", funding: "40+ years ongoing, approximately 1,000 beneficiaries to date", desc: "Comprehensive human capital development providing 30-50 fully-funded undergraduate and postgraduate scholarships annually at Chinese universities, plus 100+ short-term training positions for officials and professionals in fields including education administration, STEM, and vocational skills." },
+      { name: "TVET and Secondary Education Support", funding: "PGK 50M grant announced 2023, implementation ongoing", desc: "Targeted funding for secondary schools and technical institutions nationwide, including planned Enga Province Polytechnic Institute development to strengthen vocational training in the Highlands." }
     ],
     provinces: ["National Capital District", "Southern Highlands", "Enga", "Morobe"],
     focusAreas: ["Primary/Elementary", "Secondary", "TVET", "Tertiary/Scholarships", "Infrastructure", "Digital Learning / EdTech"],
-    strategic: ["Substantial infrastructure investment", "Comprehensive human resource development", "Geographic reach beyond capitals", "Long-term human capital investment", "Cultural and academic exchange"]
+    strategic: [
+      { title: "Substantial infrastructure investment", detail: "Building modern educational facilities from early childhood through tertiary levels, addressing critical infrastructure gaps in both urban and rural areas" },
+      { title: "Comprehensive human resource development", detail: "Scholarship programs and professional training that have educated nearly 1,000 PNG citizens in China, creating a cadre of skilled professionals across sectors" },
+      { title: "Geographic reach beyond capitals", detail: "Supporting institutions in Southern Highlands (WPU), Enga Province (technical college), and Morobe (Confucius Institute), ensuring nationwide coverage" },
+      { title: "Long-term human capital investment", detail: "Building PNG's future leaders through 50+ years of scholarship programs with strong alumni networks" },
+      { title: "Cultural and academic exchange", detail: "Establishing Confucius Institutes at PNG universities to promote language learning and facilitate research partnerships, strengthening people-to-people ties" }
+    ]
   },
   {
     id: "usa",
@@ -150,20 +207,29 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: null,
     flagshipFunding: "~US$18M for rural schools (2020-25)",
-    about: "Through the U.S. Department of State, advances self-reliance in PNG by supporting targeted education and foreign assistance programs that promote economic opportunities and innovation. Focus on niche technical expertise, remote area reach, and cross-sector integration.",
-    coordination: ["Development Partner Forums", "U.S.-PNG Strategic Partnership Dialogue", "Regional Pacific Initiatives"],
+    about: "The United States, through the U.S. Department of State, advances self-reliance in Papua New Guinea by supporting targeted education and foreign assistance programs that promote economic opportunities and innovation. U.S. engagement aligns with U.S. foreign policy priorities to strengthen human capital and build resilient communities. The United States delivers lifesaving programs and strategic assistance, leveraging innovative American companies to achieve these objectives.",
+    coordination: [
+      { name: "Development Partner Forums", description: "Participate in donor coordination meetings and provide input into the National Education Plan" },
+      { name: "U.S.-PNG Strategic Partnership Dialogue", description: "Annual high-level policy dialogue and partnership review, working directly with national and provincial governments on development programs" },
+      { name: "Regional Pacific Initiatives", description: "Implement education components through broader Pacific regional programs and partnerships" }
+    ],
     programs: [
-      { name: "Fulbright Programs", funding: "Ongoing", desc: "Fully funded degree programs, professional exchanges, and research trips. Brings Americans to PNG as teachers and fellows." },
-      { name: "Cross-Sector Professional Development", funding: "Ongoing", desc: "Department of State, Department of War, East-West Center, and Daniel K. Inouye Asia-Pacific Center for Security Studies provide professional development." },
-      { name: "PNG Electrification Partnership", funding: "~US$18M of US$58M (2020-2025)", desc: "Off-grid solar electrification for rural schools and education facilities in Hela, Northern (Oro), and Manus provinces." },
-      { name: "American Corner and Literacy Initiatives", funding: "Ongoing", desc: "Children's book distributions, literacy events. Three American Spaces across PNG provide titles and internet access." },
-      { name: "Pacific RISE-CTIP", funding: "US$270K in PNG (2021-2025)", desc: "Regional Counter Trafficking in Persons program with NGOs and schools awareness." },
-      { name: "Disaster Response Community Training", funding: "Part of US$6M commitment (2024-2026)", desc: "Disaster preparedness training in 2024-2025 reached 198 individuals; 5,000+ vulnerable community members gained skills." },
-      { name: "Entrepreneurship and Financial Empowerment", funding: "MiBank US$5M lending (2021-2029), AWE US$130K (2021-2025)", desc: "MiBank loans and financial literacy, Academy for Women Entrepreneurs trained 270+ women." }
+      { name: "Fulbright Programs", funding: "Ongoing", desc: "The U.S. Government's flagship exchange program sends Papua New Guineans to the United States for fully funded degree programs, professional exchanges, and research trips, and brings Americans to PNG as teachers and fellows with universities and communities." },
+      { name: "Cross-Sector Professional Development", funding: "Ongoing", desc: "The Department of State, the Department of War, and partners such as the East-West Center and the Daniel K. Inouye Asia-Pacific Center for Security Studies, provide professional development across sectors. Programming includes resume and interview workshops, disaster preparedness, medical and practical training with the PNGDF, and short-term exchange programs in the United States." },
+      { name: "PNG Electrification Partnership", funding: "~US$18M for rural schools and education facilities, of US$58M+ total U.S. commitments (2020-2025)", desc: "The PNG Electrification Partnership supports off-grid solar electrification for rural schools and education facilities in Hela, Northern (Oro), and Manus provinces, improving access to reliable power for ICT and extended learning." },
+      { name: "American Corner and Literacy Initiatives", funding: "Ongoing", desc: "The U.S. sponsors children's book distributions and hosts literacy events. Three American Spaces across PNG make hundreds of titles and internet access available for free." },
+      { name: "Pacific Regional Initiative and Support for More Effective Counter Trafficking in Persons (TIP) - Pacific RISE-CTIP", funding: "US$270,000 in PNG (2021-2025)", desc: "A regional program focused on TIP awareness and reducing human trafficking in PNG, Fiji, RMI, and Tonga. The United States supports education and awareness with NGOs, particularly in schools." },
+      { name: "Disaster Response Community Training", funding: "Part of U.S. US$6 million commitment (2024-2026)", desc: "The U.S. partners with PNG's disaster / response management agencies and local leaders to improve disaster readiness in remote, high-risk areas. In 2024-2025, 198 individuals received disaster preparedness training and over 5,000 members of vulnerable communities gained skills to assess and address risks." },
+      { name: "Entrepreneurship and Financial Empowerment", funding: "MiBank US$5M lending portfolio (2021-2029); AWE US$130,000 (2021-2025)", desc: "The United States supports MiBank to expand loans and financial literacy training, helping PNG entrepreneurs and small businesses access capital and grow. Through the Academy for Women Entrepreneurs, over 270 women have gained business skills and support. These initiatives empower PNG entrepreneurs and increase access to investment opportunities." }
     ],
     provinces: ["Hela", "Northern (Oro)", "Manus"],
     focusAreas: ["Tertiary/Scholarships", "Literacy/Numeracy", "Infrastructure", "Digital Learning / EdTech", "Emergency Response", "Girls' Education / Gender"],
-    strategic: ["Niche technical expertise (literacy/EdTech)", "Innovation and piloting", "Remote area reach (Western, Highlands)", "Cross-sector integration"]
+    strategic: [
+      { title: "Niche technical expertise", detail: "Focusing on literacy innovation and EdTech solutions" },
+      { title: "Innovation and piloting", detail: "Testing scalable models like digital learning and community-based education that can be adopted by the PNG government or other partners" },
+      { title: "Remote area reach", detail: "Targeting underserved provinces like Western Province and isolated Highland communities, often overlooked by larger programs" },
+      { title: "Cross-sector integration", detail: "Embedding education components within health, countering trafficking in persons, and governance programs for sustainable community development" }
+    ]
   },
 
   // ===================== MULTILATERAL =====================
