@@ -10,6 +10,8 @@
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root {
@@ -244,7 +246,104 @@ body {
 }
 .programs-count { font-weight: 600; color: var(--png-blue); }
 
-/* ============ VIEW: MAP / GEOGRAPHY ============ */
+/* ============ VIEW: LEAFLET MAP ============ */
+.map-wrap {
+  background: var(--card); border-radius: 12px;
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.map-toolbar {
+  padding: 14px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.map-toolbar .lead {
+  font-size: 14px; font-weight: 700; color: var(--png-blue-deep);
+}
+.map-toolbar .lead small {
+  font-weight: 500; color: var(--muted); margin-left: 6px;
+  font-size: 12px;
+}
+.map-legend {
+  display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--muted);
+}
+.legend-bar {
+  height: 12px; width: 140px; border-radius: 3px;
+  background: linear-gradient(90deg, #eef2f7, #a8c2dc 50%, var(--png-blue) 80%, var(--png-yellow));
+  border: 1px solid var(--border);
+}
+.map-body {
+  display: grid; grid-template-columns: 1fr 320px;
+}
+@media (max-width: 900px) { .map-body { grid-template-columns: 1fr; } }
+#png-map {
+  height: 580px;
+  background: #eaf1f8;
+}
+.leaflet-container { font-family: inherit; font-size: 12px; }
+.map-sidebar {
+  padding: 18px 20px;
+  border-left: 1px solid var(--border);
+  background: #fbfcfd;
+  max-height: 580px; overflow-y: auto;
+}
+.map-sidebar .hint {
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+}
+.map-sidebar h4 {
+  font-size: 10px; color: var(--png-blue);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.map-sidebar .selected-prov {
+  font-size: 18px; font-weight: 800; color: var(--png-blue-deep);
+  letter-spacing: -0.01em; line-height: 1.2;
+  margin-bottom: 4px;
+}
+.map-sidebar .selected-count {
+  font-size: 12px; color: var(--muted); margin-bottom: 14px;
+}
+.map-sidebar .selected-count strong { color: var(--png-blue); }
+.map-sidebar .partner-list {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.map-sidebar .partner-list button {
+  background: white; border: 1px solid var(--border);
+  border-radius: 7px; padding: 8px 12px;
+  font-size: 12.5px; font-weight: 600; color: var(--png-blue-dark);
+  text-align: left; cursor: pointer; font-family: inherit;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+.map-sidebar .partner-list button:hover {
+  border-color: var(--png-blue); background: rgba(26,77,140,.04);
+}
+.map-sidebar .partner-list button .cat-mini {
+  font-size: 9px; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 2px 6px; border-radius: 3px; font-weight: 700;
+}
+.map-sidebar .partner-list button .cat-mini.bilateral { background: rgba(26,77,140,.12); color: var(--png-blue-dark); }
+.map-sidebar .partner-list button .cat-mini.multilateral { background: rgba(59,120,196,.18); color: #1c4f8f; }
+.map-sidebar .partner-list button .cat-mini.implementing { background: rgba(245,197,24,.2); color: #8a6500; }
+.map-attribution {
+  padding: 10px 20px; border-top: 1px solid var(--border);
+  font-size: 10px; color: var(--mute-soft, #94a3b8);
+}
+.map-attribution a { color: var(--png-blue); text-decoration: none; }
+
+/* Leaflet tooltip */
+.leaflet-tooltip.png-tip {
+  background: var(--png-blue-deep); color: white;
+  border: none; padding: 6px 10px; border-radius: 6px;
+  font-size: 12px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+}
+.leaflet-tooltip.png-tip::before { display: none; }
+.leaflet-tooltip.png-tip .count {
+  display: block; font-weight: 500; opacity: 0.85; font-size: 11px; margin-top: 2px;
+}
+
+/* ============ VIEW: PROVINCE GRID ============ */
 .geo-wrap {
   background: var(--card); border-radius: 12px;
   padding: 20px 24px; box-shadow: var(--shadow);
@@ -486,7 +585,8 @@ td.partner-cell { font-weight: 700; color: var(--png-blue-deep); }
   <div class="tabs" role="tablist">
     <button class="tab active" data-view="grid">Partner Cards</button>
     <button class="tab" data-view="table">Table</button>
-    <button class="tab" data-view="geo">Provincial Coverage</button>
+    <button class="tab" data-view="map">Province Map</button>
+    <button class="tab" data-view="geo">Provincial List</button>
     <button class="tab" data-view="charts">Analytics</button>
   </div>
 
@@ -535,7 +635,34 @@ td.partner-cell { font-weight: 700; color: var(--png-blue-deep); }
     </div>
   </section>
 
-  <!-- VIEW: Provincial Coverage -->
+  <!-- VIEW: Province Map (Leaflet) -->
+  <section class="view" id="view-map">
+    <div class="map-wrap">
+      <div class="map-toolbar">
+        <div class="lead">Choropleth: partner presence by province <small>Darker = more partners. Nationwide partners count toward every province.</small></div>
+        <div class="map-legend">
+          <span>0</span><div class="legend-bar"></div><span id="legend-max">—</span>
+        </div>
+      </div>
+      <div class="map-body">
+        <div id="png-map"></div>
+        <aside class="map-sidebar" id="map-sidebar">
+          <div class="hint">
+            <strong style="color:var(--png-blue-deep);">Click a province</strong> to see all partners working there.
+            <br><br>
+            Hover for province name &amp; partner count.
+          </div>
+        </aside>
+      </div>
+      <div class="map-attribution">
+        Province boundaries: <a href="https://www.geoboundaries.org/" target="_blank" rel="noopener">geoBoundaries</a>
+        (PNG NSO + OCHA ROAP, 2023, CC&#x2011;BY 3.0 IGO).
+        Basemap: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW: Provincial Coverage (list/grid) -->
   <section class="view" id="view-geo">
     <div class="geo-wrap">
       <div class="chart-title">
@@ -748,6 +875,171 @@ function renderGeo(partners) {
   });
 }
 
+/* ============ RENDER: LEAFLET MAP ============ */
+// Map geoBoundaries shapeName → our PROVINCES key
+const GEO_NAME_MAP = {
+  "Autonomous Region of Bougainville": "Bougainville (AROB)",
+  "Central Province": "Central",
+  "Chimbu (Simbu) Province": "Chimbu (Simbu)",
+  "East New Britain Province": "East New Britain",
+  "East Sepik Province": "East Sepik",
+  "Eastern Highlands Province": "Eastern Highlands",
+  "Enga Province": "Enga",
+  "Gulf Province": "Gulf",
+  "Hela Province": "Hela",
+  "Jiwaka Province": "Jiwaka",
+  "Madang Province": "Madang",
+  "Manus Province": "Manus",
+  "Milne Bay Province": "Milne Bay",
+  "Morobe Province": "Morobe",
+  "National Capital District": "National Capital District",
+  "New Ireland Province": "New Ireland",
+  "Northern (Oro) Province": "Northern (Oro)",
+  "Southern Highlands Province": "Southern Highlands",
+  "West New Britain Province": "West New Britain",
+  "West Sepik (Sandaun) Province": "Sandaun (West Sepik)",
+  "Western Highlands Province": "Western Highlands",
+  "Western Province": "Western",
+};
+
+let _map = null, _mapLayer = null, _mapData = null;
+let _provincePartnerCache = {};
+
+function partnersInProvince(province, partners) {
+  return partners.filter(p => p.provinces.includes(province) || p.provinces.includes("all"));
+}
+
+function ramp(t, max) {
+  // 0 → light grey; >0 → blue/yellow ramp
+  if (max === 0) return "#eef2f7";
+  if (t === 0)   return "#eef2f7";
+  const stops = [
+    [0,   [232, 240, 248]],   // very light blue
+    [0.25,[168, 194, 220]],
+    [0.55,[ 59, 120, 196]],
+    [0.80,[ 26,  77, 140]],   // png-blue
+    [1.0, [245, 197,  24]],   // png-yellow
+  ];
+  for (let i = 0; i < stops.length - 1; i++) {
+    const [t1, c1] = stops[i], [t2, c2] = stops[i+1];
+    if (t >= t1 && t <= t2) {
+      const f = (t - t1) / (t2 - t1);
+      const r = Math.round(c1[0] + (c2[0]-c1[0])*f);
+      const g = Math.round(c1[1] + (c2[1]-c1[1])*f);
+      const b = Math.round(c1[2] + (c2[2]-c1[2])*f);
+      return `rgb(${r},${g},${b})`;
+    }
+  }
+  return "#eef2f7";
+}
+
+function fillForProvince(provKey, max) {
+  const count = (_provincePartnerCache[provKey] || []).length;
+  if (count === 0) return "#eef2f7";
+  return ramp(count / max, max);
+}
+
+function buildPartnerCache(partners) {
+  _provincePartnerCache = {};
+  PROVINCES.forEach(pv => {
+    _provincePartnerCache[pv] = partnersInProvince(pv, partners);
+  });
+}
+
+function renderMapSidebar(provKey) {
+  const sidebar = $("map-sidebar");
+  if (!provKey) {
+    sidebar.innerHTML = `<div class="hint">
+      <strong style="color:var(--png-blue-deep);">Click a province</strong> to see all partners working there.
+      <br><br>
+      Hover for province name &amp; partner count.
+    </div>`;
+    return;
+  }
+  const list = _provincePartnerCache[provKey] || [];
+  sidebar.innerHTML = `
+    <h4>Selected Province</h4>
+    <div class="selected-prov">${provKey}</div>
+    <div class="selected-count"><strong>${list.length}</strong> partner${list.length === 1 ? "" : "s"} working here</div>
+    <h4>Partners</h4>
+    <div class="partner-list"></div>
+  `;
+  const ul = sidebar.querySelector(".partner-list");
+  if (list.length === 0) {
+    ul.innerHTML = `<div class="hint" style="font-style:italic;">No partners explicitly listed for this province.</div>`;
+    return;
+  }
+  list.forEach(p => {
+    const btn = document.createElement("button");
+    btn.innerHTML = `<span>${p.name}</span><span class="cat-mini ${p.category.toLowerCase()}">${p.category[0]}</span>`;
+    btn.addEventListener("click", () => openModal(p));
+    ul.appendChild(btn);
+  });
+}
+
+function styleProvince(maxCount) {
+  return feat => {
+    const key = GEO_NAME_MAP[feat.properties.shapeName];
+    const count = (_provincePartnerCache[key] || []).length;
+    return {
+      fillColor: fillForProvince(key, maxCount),
+      fillOpacity: count === 0 ? 0.5 : 0.85,
+      color: "white",
+      weight: 1.5,
+    };
+  };
+}
+
+async function renderMap(partners) {
+  buildPartnerCache(partners);
+  const counts = Object.values(_provincePartnerCache).map(a => a.length);
+  const maxCount = Math.max(1, ...counts);
+  $("legend-max").textContent = maxCount;
+
+  if (!_map) {
+    _map = L.map("png-map", {
+      zoomControl: true, scrollWheelZoom: false, attributionControl: true,
+      minZoom: 4, maxZoom: 10,
+    });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 14, opacity: 0.4,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(_map);
+  }
+
+  if (!_mapData) {
+    const r = await fetch("assets/png_provinces.geojson");
+    _mapData = await r.json();
+  }
+
+  if (_mapLayer) { _map.removeLayer(_mapLayer); _mapLayer = null; }
+  _mapLayer = L.geoJSON(_mapData, {
+    style: styleProvince(maxCount),
+    onEachFeature: (feat, layer) => {
+      const key = GEO_NAME_MAP[feat.properties.shapeName];
+      const count = (_provincePartnerCache[key] || []).length;
+      layer.bindTooltip(
+        `${key || feat.properties.shapeName}<span class="count">${count} partner${count === 1 ? "" : "s"}</span>`,
+        { className: "png-tip", sticky: true, direction: "top" }
+      );
+      layer.on("mouseover", () => layer.setStyle({ weight: 3, fillOpacity: 0.95 }));
+      layer.on("mouseout",  () => _mapLayer.resetStyle(layer));
+      layer.on("click", () => {
+        renderMapSidebar(key);
+        _map.fitBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 8 });
+      });
+    },
+  }).addTo(_map);
+
+  _map.fitBounds(_mapLayer.getBounds(), { padding: [10, 10] });
+
+  // Reset sidebar each time filters change
+  renderMapSidebar(null);
+
+  // Leaflet sometimes needs a nudge when the container was hidden
+  setTimeout(() => _map.invalidateSize(), 80);
+}
+
 /* ============ RENDER: CHARTS ============ */
 let charts = {};
 
@@ -943,6 +1235,7 @@ function render() {
 
   if (state.view === "grid") renderCards(filtered);
   if (state.view === "table") renderTable(filtered);
+  if (state.view === "map") renderMap(filtered);
   if (state.view === "geo") renderGeo(filtered);
   if (state.view === "charts") renderCharts(filtered);
 }
