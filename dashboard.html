@@ -482,6 +482,17 @@ td.partner-cell { font-weight: 700; color: var(--png-blue-deep); }
   font-size: 20px; cursor: pointer; line-height: 1;
 }
 .modal-close:hover { background: rgba(255,255,255,.25); }
+.modal-fullprofile {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 14px;
+  background: var(--png-yellow); color: var(--png-blue-deep);
+  font-size: 12px; font-weight: 800;
+  text-decoration: none; border-radius: 4px;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: all 0.15s;
+}
+.modal-fullprofile:hover { background: white; transform: translateY(-1px); }
 .modal-body {
   padding: 28px 32px 32px;
   max-height: calc(100vh - 200px); overflow-y: auto;
@@ -708,6 +719,7 @@ td.partner-cell { font-weight: 700; color: var(--png-blue-deep); }
       <button class="modal-close" id="modal-close">&times;</button>
       <h2 id="modal-title"></h2>
       <div class="meta" id="modal-meta"></div>
+      <a id="modal-fullprofile" href="#" class="modal-fullprofile" style="display:none;">View full profile →</a>
     </div>
     <div class="modal-body" id="modal-body"></div>
   </div>
@@ -1166,9 +1178,25 @@ function renderCharts(partners) {
 }
 
 /* ============ MODAL ============ */
+// Partner IDs that have a dedicated full-profile page generated under /partners/<id>.html.
+// Populated category-by-category as profile pages are built.
+const PARTNER_PROFILE_PAGES = new Set([
+  // Bilateral (7)
+  "australia-dfat","uk-fcdo","indonesia","jica","nz-mfat","china-prc","usa",
+]);
+
 function openModal(p) {
   $("modal-title").textContent = p.name;
   $("modal-meta").textContent = `${p.category} Partner · ${p.orgType} · ${p.role}${p.partnerSince ? " · Partner since " + p.partnerSince : ""}`;
+
+  const fp = $("modal-fullprofile");
+  if (PARTNER_PROFILE_PAGES.has(p.id)) {
+    fp.href = `partners/${p.id}.html`;
+    fp.style.display = "inline-block";
+  } else {
+    fp.style.display = "none";
+  }
+
   const body = $("modal-body");
   body.innerHTML = "";
 
