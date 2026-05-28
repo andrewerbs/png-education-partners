@@ -25,6 +25,7 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1975,
     flagshipFunding: "~AUD 100M annually",
+    logo: "assets/logos/australia-dfat.png",
     about: "Australia, through the Department of Foreign Affairs and Trade (DFAT), is Papua New Guinea's largest development partner and plays a pivotal role in PNG's education sector. The partnership began at PNG's independence in 1975 and has evolved into a comprehensive strategic relationship spanning all education levels. DFAT views education as essential for building PNG's human capital and long-term prosperity, with support underpinned by high-level bilateral agreements, including the PNG-Australia Comprehensive Strategic and Economic Partnership (CSEP, 2020) and the Australia-PNG Development Partnership Plan (DPP, 2024-29). Australia's approach focuses on inclusive and equitable improvement of learning outcomes, targeting critical challenges such as low literacy/numeracy rates, gender disparities, and rural access barriers through close collaboration with PNG's National Department of Education.",
     coordination: [
       { name: "PNG-Australia Ministerial Forum", description: "Annual high-level policy dialogue and commitment review" },
@@ -57,6 +58,7 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1975,
     flagshipFunding: "Largest bilateral GPE donor 2021-25",
+    logo: "assets/logos/uk-fcdo.png",
     about: "The British High Commission was established in Papua New Guinea in 1975, coinciding with PNG's independence, and has maintained diplomatic and development relations since then. The UK government operates as a bilateral donor with a targeted but strategic approach, focusing primarily on multilateral funding through the Global Partnership for Education and prestigious scholarship programs. While not among the largest donors by volume, the UK's contributions complement those of other donors by leveraging global partnerships and emphasising girls' education, human capital development, and system-strengthening approaches that align with PNG's development priorities.",
     coordination: [
       { name: "LEG meetings", description: "Active participant in Local Education Group coordination" },
@@ -87,6 +89,7 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1997,
     flagshipFunding: "2,000 scholarships (2023-28)",
+    logo: "assets/logos/indonesia.png",
     about: "Indonesia has emerged as a significant development partner for Papua New Guinea's education sector, particularly since establishing Indonesian AID in 2019. Through South-South cooperation initiatives, Indonesia emphasises \"equality, mutual benefit, and the pursuit of global prosperity\" in its development approach. The partnership, formalised through education cooperation frameworks dating back to 1997, has dramatically expanded since 2023 with major scholarship programs and infrastructure investments, positioning Indonesia as a key contributor to PNG's human capital development goals.",
     coordination: [
       { name: "Joint Ministerial Committee (JMC)", description: "Meeting in March 2023 focused on education cooperation" },
@@ -116,6 +119,7 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1974,
     flagshipFunding: "GPE coordinating agency (~US$40.7M)",
+    logo: "assets/logos/jica.png",
     about: "Japan International Cooperation Agency has been operating in Papua New Guinea since 1974, making it one of the longest-serving development partners in the country. JICA formally established relations with the National Department of Education in 1980 and has since become a cornerstone of PNG's education development. The agency focuses on technical cooperation, capacity building, and sustainable development aligned with PNG's national priorities. Since 2022, JICA serves as the coordinating agency for the Global Partnership for Education in PNG, stewarding dialogue between the National Department of Education and international partners while promoting transparent, participatory approaches. JICA's mission aligns with improving access to and quality of basic education, supporting PNG's goals of achieving universal basic education and implementing the Standards-Based Curriculum.",
     coordination: [
       { name: "LEG meetings", description: "Active participant in Local Education Group coordination" },
@@ -149,6 +153,7 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1975,
     flagshipFunding: "NZ$4-5M annually + program funds",
+    logo: "assets/logos/nz-mfat.png",
     about: "The New Zealand Ministry of Foreign Affairs and Trade (MFAT) has been a steadfast development partner in Papua New Guinea's education sector since PNG's independence in 1975. MFAT positions itself as a targeted, niche donor that complements larger partners by focusing on human capital development, innovation pilots, and filling critical gaps. Through its Pacific-focused approach, New Zealand emphasises quality education, inclusive learning, and sustainable capacity building as cornerstones of PNG's development journey.",
     coordination: [
       { name: "Pacific Regional Education Framework", description: "Co-financier program of implementation regionally" }
@@ -177,6 +182,7 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: 1976,
     flagshipFunding: "~1,000 PNG scholarship beneficiaries",
+    logo: "assets/logos/china-prc.png",
     about: "China has been a significant development partner in PNG's education sector since diplomatic relations began in 1976, framing its support as part of human resource development and bilateral cooperation. As PNG's largest Pacific development partner, China emphasises capacity-building through its \"teaching a man to fish\" philosophy, combining grant aid with people-to-people exchanges. Under the Belt and Road Initiative (which PNG joined in 2018), education features prominently alongside infrastructure and health as a key sector for connectivity and improving livelihoods.",
     coordination: [
       { name: "Bilateral Government-to-Government", description: "Direct coordination via Chinese Embassy and PNG ministries" },
@@ -207,6 +213,7 @@ const PARTNERS = [
     role: "Donor",
     partnerSince: null,
     flagshipFunding: "~US$18M for rural schools (2020-25)",
+    logo: "assets/logos/usa.png",
     about: "The United States, through the U.S. Department of State, advances self-reliance in Papua New Guinea by supporting targeted education and foreign assistance programs that promote economic opportunities and innovation. U.S. engagement aligns with U.S. foreign policy priorities to strengthen human capital and build resilient communities. The United States delivers lifesaving programs and strategic assistance, leveraging innovative American companies to achieve these objectives.",
     coordination: [
       { name: "Development Partner Forums", description: "Participate in donor coordination meetings and provide input into the National Education Plan" },

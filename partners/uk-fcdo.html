@@ -83,6 +83,24 @@ nav.top {
 .cover-inner {
   position: relative; max-width: var(--max); margin: 0 auto;
   padding: 56px 32px 44px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+.cover-text { min-width: 0; }
+.cover-logo {
+  flex-shrink: 0;
+  max-width: 260px;
+  max-height: 160px;
+  width: auto; height: auto;
+  display: block;
+  border-radius: 4px;
+  mix-blend-mode: normal;
+}
+@media (max-width: 720px) {
+  .cover-inner { grid-template-columns: 1fr; gap: 20px; }
+  .cover-logo { max-width: 180px; max-height: 120px; justify-self: start; }
 }
 .breadcrumb {
   font-size: 11px; font-weight: 700; color: rgba(255,255,255,.6);
@@ -283,21 +301,24 @@ footer.site a { color: var(--png-yellow); }
 
 <header class="cover">
   <div class="cover-inner">
-    <div class="breadcrumb">
-      <a href="../index.html">Mapping</a>
-      <span class="sep">›</span>
-      <a href="../dashboard.html?category=Bilateral">Bilateral Partners</a>
-      <span class="sep">›</span>
-      <span>British High Commission (FCDO)</span>
+    <div class="cover-text">
+      <div class="breadcrumb">
+        <a href="../index.html">Mapping</a>
+        <span class="sep">›</span>
+        <a href="../dashboard.html?category=Bilateral">Bilateral Partners</a>
+        <span class="sep">›</span>
+        <span>British High Commission (FCDO)</span>
+      </div>
+      <span class="partner-cat-tag">Bilateral Partner</span>
+      <h1>British High Commission (FCDO)</h1>
+      <div class="cover-meta">
+        <span class="item"><dt>Organisation Type</dt><dd>Foreign Government</dd></span>
+        <span class="item"><dt>Role</dt><dd>Donor</dd></span>
+        <span class="item"><dt>Partner since 1975</dt></span>
+        <span class="item"><dt>Flagship</dt><dd>Largest bilateral GPE donor 2021-25</dd></span>
+      </div>
     </div>
-    <span class="partner-cat-tag">Bilateral Partner</span>
-    <h1>British High Commission (FCDO)</h1>
-    <div class="cover-meta">
-      <span class="item"><dt>Organisation Type</dt><dd>Foreign Government</dd></span>
-      <span class="item"><dt>Role</dt><dd>Donor</dd></span>
-      <span class="item"><dt>Partner since 1975</dt></span>
-      <span class="item"><dt>Flagship</dt><dd>Largest bilateral GPE donor 2021-25</dd></span>
-    </div>
+    <img src="../assets/logos/uk-fcdo.png" alt="British High Commission (FCDO) logo" class="cover-logo">
   </div>
 </header>
 

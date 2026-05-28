@@ -185,6 +185,24 @@ nav.top {
 .cover-inner {
   position: relative; max-width: var(--max); margin: 0 auto;
   padding: 56px 32px 44px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+.cover-text { min-width: 0; }
+.cover-logo {
+  flex-shrink: 0;
+  max-width: 260px;
+  max-height: 160px;
+  width: auto; height: auto;
+  display: block;
+  border-radius: 4px;
+  mix-blend-mode: normal;
+}
+@media (max-width: 720px) {
+  .cover-inner { grid-template-columns: 1fr; gap: 20px; }
+  .cover-logo { max-width: 180px; max-height: 120px; justify-self: start; }
 }
 .breadcrumb {
   font-size: 11px; font-weight: 700; color: rgba(255,255,255,.6);
@@ -385,21 +403,24 @@ footer.site a { color: var(--png-yellow); }
 
 <header class="cover">
   <div class="cover-inner">
-    <div class="breadcrumb">
-      <a href="../index.html">Mapping</a>
-      <span class="sep">›</span>
-      <a href="../dashboard.html?category=${encodeURIComponent(p.category)}">${esc(p.category)} Partners</a>
-      <span class="sep">›</span>
-      <span>${esc(p.name)}</span>
+    <div class="cover-text">
+      <div class="breadcrumb">
+        <a href="../index.html">Mapping</a>
+        <span class="sep">›</span>
+        <a href="../dashboard.html?category=${encodeURIComponent(p.category)}">${esc(p.category)} Partners</a>
+        <span class="sep">›</span>
+        <span>${esc(p.name)}</span>
+      </div>
+      <span class="partner-cat-tag">${esc(p.category)} Partner</span>
+      <h1>${esc(p.name)}</h1>
+      <div class="cover-meta">
+        <span class="item"><dt>Organisation Type</dt><dd>${esc(p.orgType)}</dd></span>
+        <span class="item"><dt>Role</dt><dd>${esc(p.role)}</dd></span>
+        ${partnerSince ? `<span class="item"><dt>${esc(partnerSince)}</dt></span>` : ""}
+        ${p.flagshipFunding ? `<span class="item"><dt>Flagship</dt><dd>${esc(p.flagshipFunding)}</dd></span>` : ""}
+      </div>
     </div>
-    <span class="partner-cat-tag">${esc(p.category)} Partner</span>
-    <h1>${esc(p.name)}</h1>
-    <div class="cover-meta">
-      <span class="item"><dt>Organisation Type</dt><dd>${esc(p.orgType)}</dd></span>
-      <span class="item"><dt>Role</dt><dd>${esc(p.role)}</dd></span>
-      ${partnerSince ? `<span class="item"><dt>${esc(partnerSince)}</dt></span>` : ""}
-      ${p.flagshipFunding ? `<span class="item"><dt>Flagship</dt><dd>${esc(p.flagshipFunding)}</dd></span>` : ""}
-    </div>
+    ${p.logo ? `<img src="../${esc(p.logo)}" alt="${esc(p.name)} logo" class="cover-logo">` : ""}
   </div>
 </header>
 
